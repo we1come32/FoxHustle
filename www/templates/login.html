@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  {% load staticfiles %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Вход | {{ website.name }}</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "www/css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static "www/css/mdb.min.css" %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static "www/css/style.css" %}" rel="stylesheet">
+  <style>
+    /* Only for snippet */
+    .my-custom-scrollbar {
+      position: relative;
+      width: 800px;
+      height: 400px;
+      overflow: auto;
+    }
+    .modal-dialog {
+      width: 100% !important;
+    }
+    header i{
+      width: 2vh;
+      text-align: center;
+    }
+    @media (min-width: 993px){
+      .double-nav .brand-name {
+        display: none;
+      }
+    }
+    .search-form .search-list.active{
+      display: block !important;
+      position: relative;
+      width: 100%;
+    }
+    html, body {
+      background-color: #eee;
+    }
+    .btn{
+      padding: .84rem 0.5rem !important;
+    }
+  </style>
+</head>
+
+<body class="fixed-sn light-blue-skin" onload="document.body.style.minHeight = window.clientHeight+'px'">
+  <header style="height: auto !important">
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav fixed">
+      <ul class="form-elegant scrollbar-light-blue" style="max-height:100vh; padding-bottom:90px;;">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light align-center" style="height: 100%">
+            <a href="#" class="h-100">
+              <div class="w-100">
+                <div class="cols-12">
+                  <img src="{% static "www/img/svg/Fox_logo.svg" %}" class="img-fluid w-100 h-100 flex-center avatar">
+                </div>
+                <div class="cols-12 text-center font-weight-bold brand-name text-black" style="color: black; margin-top: -5vh; background-color: #4d769e;">
+                    {{ website.name }}
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <!--/. Logo -->
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion scrolling-navbar">
+            <li><a class="collapsible-header waves-effect arrow-r active"><i class="fas fa-chevron-right"></i>Меню<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="/login" class="waves-effect"><i class="fas fa-sign-in-alt"></i>Войти</a>
+                  </li>
+                  <li><a href="/password" class="waves-effect"><i class="fas fa-plus"></i>Зарегистрироваться</a>
+                  </li>
+                  <li><a href="/restore" class="waves-effect"><i class="fas fa-question"></i>Восстановить доступ</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r active"><i class="fas fa-chevron-right"></i>Дополнительно<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-code"></i>Разработчикам</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-users"></i>О нас</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-question"></i>Помощь</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="waves-effect">Выйти</a>
+            </li>
+          </ul>
+        </li>
+        <!--/. Side navigation links -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-dn mr-auto">
+        <p>{{ website.name }}</p>
+      </div>
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register"><i class="fas fa-plus"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.Navbar -->
+  </header>
+  <main class=" h-100" style="min-height: 100%; "">
+    <!--/.Double navigation-->
+    <div class="container mt-md-5 h-100" style="min-height: 100%; ">
+      <table class="row h-100">
+        <tbody style="width: 100%;">
+          <td class="d-none d-lg-table-cell w-75" style="background-image: url(''); background-size: 100%; background-repeat: no-repeat;">
+            <img src="{% static "www/img/telephone-and-notebook.png" %}" alt="" class="w-100" />
+          </ts>
+          <td class="w-25 col-12 h-100 align-top">
+            <ul class="nav nav-tabs md-tabs m-0" role="group" aria-label="Vertical button group">
+              <li class="wafes-effect wafes-light">
+                <a class="nav-link{% if tmp.login %} active {% endif %}" id="login-tab-ex" href="/login"
+                          aria-selected="false">Вход</a>
+              </li>
+              <li class="wafes-effect wafes-light">
+                <a class="nav-link{% if tmp.register %} active {% endif %}" id="register-tab-ex" href="/register" 
+                          aria-selected="false">Регистрация</a>
+              </li>
+              <li class="wafes-effect wafes-light">
+                <a class="nav-link{% if tmp.about %} active {% endif %}" id="about-tab-ex" href="/about"
+                          aria-selected="false">О сайте</a>
+              </li>
+            </ul>
+            <div class="tab-content pt-0 px-0" id="myTabContentEx">
+              {% if tmp.register %}
+              <form action="/register" method="post" class="row m-0 my-2 w-100 active fade show" id="register-ex">
+                <div class="card w-100 align-bottom">
+                  <div class="card-header">
+                    <span class="float-left">
+                      Зарегистрироваться в {{ website.name }}
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    {% for error in register_errors %}
+                      {{ error }}<br>
+                    {% endfor %}
+                    E-mail
+                    <input type="text" class="w-100" name="email" value="{{ reg_data.email }}">
+                    Пароль
+                    <input type="password" class="w-100" name="password">
+                    Повторите пароль
+                    <input type="password" class="w-100" name="repeat-password">
+                    Ваше имя
+                    <input type="text" class="w-100" name="first_name" value="{{ reg_data.first_name }}">
+                    Ваша фамилия
+                    <input type="text" class="w-100" name="last_name" value="{{ reg_data.last_name }}">
+                    Псевдоним
+                    <input type="text" class="w-100" name="nickname" value="{{ reg_data.nickname }}">
+                  </div>
+                  <div class="card-footer">
+                    <div class="row">
+                      <div class="col-lg-8 col-12 order-2 order-lg-1 mt-2 mt-lg-0">
+                        <span class="d-block w-md-100">Зарегистрироваться с помощью</span>
+                        <span>
+                          <a href="http://vk.com/welc32" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-vk"></i></a>
+                          <a href="http://google.com/" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-google"></i></a>
+                          <a href="https://www.facebook.com/ikanyshev" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-facebook"></i></a>
+                          <a href="https://twitter.com/ikanyshev" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-twitter"></i></a>
+                          <a href="https://github.com/welc32" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-github"></i> </a>
+                          <a href="https://instagram.com/welc_32" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-instagram"></i></a>
+                        </span>
+                      </div>
+                      <div class="col-lg-4 col-12 order-1 order-lg-2">
+                        <button class="px-4 btn btn-info btn-block float-right" data-toggle="modal" data-target="#modal-register">
+                            Зарегистрироваться
+                        </button>
+                        <!-- Modal -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {%  csrf_token %}
+              </form>
+              {% endif %}
+              {% if tmp.login %}
+              <form action="/login" method="post" class="row m-0 my-2 w-100 fade active show" id="login-ex">
+                <div class="card w-100 align-bottom">
+                  <div class="card-header">
+                    <span class="float-left">
+                      Войти в {{ website.name }}  
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    Логин
+                    <input type="text" class="w-100" name="login">
+                    Пароль
+                    <input type="password" class="w-100" name="password">
+                    {%  csrf_token %}
+                  </div>
+                  <div class="card-footer">
+                    <div class="row">
+                      <div class="col-lg-8 col-12 order-2 order-lg-1 mt-2 mt-lg-0">
+                        <span class="d-block w-md-100">Войти с помощью</span>
+                        <span>
+                          <a href="http://vk.com/welc32" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-vk"></i></a>
+                          <a href="http://google.com/" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-google"></i></a>
+                          <a href="https://www.facebook.com/ikanyshev" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-facebook"></i></a>
+                          <a href="https://twitter.com/ikanyshev" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-twitter"></i></a>
+                          <a href="https://github.com/welc32" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-github"></i> </a>
+                          <a href="https://instagram.com/welc_32" class="wafes-effect" style="padding: .5rem .2rem">
+                          <i class="fab fa-instagram"></i></a>
+                        </span>
+                      </div>
+                      <div class="col-lg-4 col-12 order-1 order-lg-2">
+                        <button class="px-4 btn btn-info btn-block float-right">Войти</button>
+                      </div>
+                      <div class="col-12 order-3 text-right">
+                        <a href="/restore">
+                          Восстановить доступ
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {%  csrf_token %}
+              </form>
+              {% endif %}
+              {% if tmp.about %}
+              <div class="row m-0 my-2 w-100 fade active show" id="about-ex">
+                <div class="card w-100 align-bottom">
+                  <div class="card-body">
+                    <b>{{ website.name }}</b> - это социальная сеть нового поколения.
+                    Уникальное самодостаточное сообщество, стань его частью!
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </td>
+        </tbody>
+      </table>
+    </div>
+    <!--Main Layout-->
+  </main>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static "www/js/jquery-3.4.1.min.js" %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static "www/js/popper.min.js" %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static "www/js/bootstrap.min.js" %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static "www/js/mdb.min.js" %}"></script>
+  <!-- MDBootstrap Datatables  -->
+  <link href="{% static "www/css/addons/datatables.min.css" %}" rel="stylesheet"> 
+  <!-- MDBootstrap Datatables  -->
+  <script type="text/javascript" src="{% static "www/js/addons/datatables.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "www/js/responsiveslides.min.js" %}"></script>
+  <script>
+    $(".button-collapse").sideNav();
+    // SideNav Initialization
+    function initScroll(string){
+      var menu = document.querySelector(string);
+      var ps = new PerfectScrollbar(menu);
+
+      var scrollbarY = menu.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
+
+      menu.onscroll = function() {
+        scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 100%; right: ${-this.scrollLeft}px`;
+      }
+      return [menu, ps, scrollbarY]
+    }
+    data = ['.scrollPhoto','.scrollbar-light-blue']
+    result = [0, 0, 0]
+    for (var i = 0; i<data.length;i++){
+      result[i]=initScroll(data[i])
+    }
+    toastr.options = {
+      "closeButton": true, // true/false
+      "debug": false, // true/false
+      "newestOnTop": true, // true/false
+      "progressBar": true, // true/false
+      "positionClass": "md-toast-bottom-right", // md-toast-top-right / md-toast-top-left / md-toast-bottom-right /
+      "preventDuplicates": false, 
+      "onclick": null,
+      "showDuration": "2000", // in milliseconds
+      "hideDuration": "2000", // in milliseconds
+      "timeOut": "10000", // in milliseconds
+      "extendedTimeOut": "2300", // in milliseconds
+      "showEasing": "swing",
+      "hideEasing": null,
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+    $("#alert-target").click(function () {
+      toastr["success"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+      toastr["info"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+      toastr["warning"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+      toastr["error"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+    });
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('#history-transactions-table').DataTable({'sort': false});
+      $('#login-history').DataTable({'sort': false});
+      $('#app-history').DataTable();
+      
+      $('.dataTables_length').addClass('bs-select');
+    });
+    /*
+    $('img:not(.photo-element)').click(
+      function(){
+        $('#photomax').removeClass('d-none');
+        var elem =  $('td#photo-element')
+        var w1 = elem.width()
+        elem.append('<img id="photo-element" class="h-100" src="'+this.src+'" />')
+        var data = $('img#photo-element')
+        var height = $(window).height()
+        console.log(0.9*height)
+        elem.height(0.9*height)
+        console.log(data.width())
+        console.log(elem.width())
+        if (data.width()>w1){
+          data.removeClass('h-100')
+          data.addClass('w-100')
+        }
+      }
+    )*/
+    function max(){
+      try{
+        var tmp = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+          if (tmp<arguments[i]){
+            tmp = arguments[i];
+          }
+        }
+        return tmp;
+      } catch (error) {
+        return 0;
+      }
+    }
+    function min(){
+      try{
+        var tmp = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+          if (tmp>arguments[i]){
+            tmp = arguments[i];
+          }
+        }
+        return tmp;
+      } catch (error) {
+        return 0;
+      }
+    }
+    function notification (data) {
+      return {
+        'text': data.text,
+        'block': data.block,
+        'closeFlag': false,
+        'close': function () {
+          if (!this.closeFlag){
+            this.closeFlag = true
+            this.block.remove()
+          }
+        }
+      }
+    }
+    $(".rslides").responsiveSlides({
+      auto: true,             // Boolean: Animate automatically, true or false
+      speed: 200,             // Integer: Speed of the transition, in milliseconds
+      timeout: 8000,          // Integer: Time between slide transitions, in milliseconds
+      pager: false,           // Boolean: Show pager, true or false
+      nav: true,              // Boolean: Show navigation, true or false
+      random: false,          // Boolean: Randomize the order of the slides, true or false
+      pause: false,           // Boolean: Pause on hover, true or false
+      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+      prevText: "<i class='fas fa-angle-left'></i>",          // String: Text for the "previous" button
+      nextText: "<i class='fas fa-angle-right'></i>",          // String: Text for the "next" button
+      maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+      navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+      manualControls: "",     // Selector: Declare custom pager navigation
+      namespace: "rslides",   // String: Change the default namespace used
+      before: function(){},   // Function: Before callback
+      after: function(){}     // Function: After callback
+    });
+    $('#upbutton').click(function() {
+        $('html, body').stop().animate({scrollTop : 0}, 300);
+    });
+    window.onload = function() {
+      var a = document.getElementsByClassName("rslides");
+      for (var i = 0; i<a.length; i++){
+        var height = 0;
+        if (a[i].style.display != "none") {
+          var tmp = a[i].getElementsByClassName("col-12")
+          for(var j = 0; j<tmp.length; j++){
+            height = max(height, tmp[j].clientHeight)
+          }
+          for(var j = 0; j<tmp.length; j++){
+            if (height != tmp[j].clientHeight){
+              tmp[j].style.cssText = "margin-top: " + (height-tmp[j].clientHeight)/2 + "px"
+            }
+          }
+          a[i].style.cssText = "height: " + height + "px !important";
+        }
+      }
+      setInterval(function(){
+        if ($(this).scrollTop() > 400) {
+            if ($('#upbutton').is(':hidden')) {
+                $('#upbutton').css({opacity : 1}).fadeIn('fast');
+            }
+        } else { $('#upbutton').stop(true, false).fadeOut('fast'); }}, 100)
+    }
+    $(body).css.height(window.clientHeight)
+  </script>
+</body>
+
+</html>

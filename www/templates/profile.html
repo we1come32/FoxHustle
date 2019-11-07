@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  {% load staticfiles %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Fox Hustle</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "www/css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static "www/css/mdb.min.css" %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static "www/css/style.css" %}" rel="stylesheet">
+  <style>
+    /* Only for snippet */
+    .my-custom-scrollbar {
+      position: relative;
+      width: 800px;
+      height: 400px;
+      overflow: auto;
+    }
+    .modal-dialog {
+      width: 100% !important;
+    }
+    header i{
+      width: 2vh;
+      text-align: center;
+    }
+    @media (min-width: 993px){
+      .double-nav .brand-name {
+        display: none;
+      }
+    }
+    .search-form .search-list.active{
+      display: block !important;
+      position: relative;
+      width: 100%;
+    }
+    html, body {
+      background-color: #eee;
+    }
+    .btn{
+      padding: .84rem 0.5rem !important;
+    }
+  </style>
+</head>
+
+<body class="fixed-sn light-blue-skin">
+    <!--Double navigation-->
+  <div id="photomax" class="d-none w-100 fixed h-100" style="z-index: 10000; position: fixed;">
+    <div class="photo-item w-100 h-100">
+      <table class="w-100 h-100" style="padding-bottom: -100%;">
+        <tbody>
+          <tr class="w-100 h-100">
+            <td class="align-middle" style="opacity:0.9; background-color: #111;">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="w-100 h-100" style="z-index: 10001; top: 0; position: fixed;">
+        <tbody>
+          <tr class="w-100 h-100">
+            <td class="align-middle photomax">
+              <div class="row gray" style="text-align: center;">
+                <div class="col-md-12">
+                  <div class="row scrollPhoto">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-10">
+                      <div class="row" style="padding: 0px;">
+                        <div class="col-sm-12 col-md-8 black">
+                          <table class="w-100 h-100">
+                            <tbody>
+                              <tr class="w-100 h-100">
+                                <td class="align-middle" id="photo-element" style="text-align: center;">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-sm-12 col-md-4 grey" style="text-align: left;">
+                          <h6 class="w-sm-100 h-md-100">Hello))0)</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1" onclick="$('#photomax').addClass('d-none');$('img#photo-element').remove();"></div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <header style="height: auto !important">
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav fixed">
+      <ul class="form-elegant scrollbar-light-blue" style="max-height:100vh; padding-bottom:90px;;">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light align-center" style="height: 100%">
+            <a href="#" class="h-100">
+              <div class="w-100">
+                <div class="cols-12">
+                  <img src="{% static "www/img/svg/Fox_logo.svg" %}" class="img-fluid w-100 h-100 flex-center avatar">
+                </div>
+                <div class="cols-12 text-center font-weight-bold brand-name text-black" style="color: black; margin-top: -5vh; background-color: #4d769e;">
+                  Fox Hustle
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <!--/. Logo -->
+        <!--Search Form-->
+        <li>
+          <form class="search-form" role="search" action="search/">
+            <div class="form-group md-form mt-0 pt-1 waves-light">
+              <input type="text" class="form-control" placeholder="Найти...">
+            </div>
+          </form>
+        </li>
+        <!--/.Search Form-->
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion scrolling-navbar">
+            <li>
+              <a class="collapsible-header waves-effect arrow-r active">
+                <i class="fas fa-chevron-right"></i>
+                Меню
+                <i class="fas fa-angle-down rotate-icon"></i>
+              </a>
+              <div class="collapsible-body">
+                <ul>
+                  <li>
+                    <a href="http://foxhustle.ru" class="waves-effect active"><i class="fas fa-user"></i>Моя страница</a>
+                  </li>
+                  <li>
+                    <a href="news" class="waves-effect"><i class="fas fa-columns"></i>Новости</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="fas fa-comments"></i>Сообщения</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="fas fa-user-friends"></i>Подписки</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="fas fa-bullhorn"></i>Рекомендации</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="far fa-bookmark"></i>Закладки</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-link"></i>
+                Ссылки<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://user.foxhustle.ru/06eb0a140a570bb10b5b0be90a9f0ea2" class="waves-effect"><i class="fas fa-user-friends"></i>administration#4</a>
+                  </li>
+                  <li><a href="http://user.foxhustle.ru/0cae09cb0fef0e9f" class="waves-effect"><i class="fas fa-user"></i>welc32#1</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i>
+                Настройки<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-shield-alt"></i>Безопасность</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-user-shield"></i>Приватность</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-cog"></i>Настройки пользователя</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-cog"></i>Настройки сайта</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i>Дополнительно<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-code"></i>Разработчикам</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-bug"></i>Баг-трекер</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-users"></i>О нас</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-question"></i>Помощь</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/logout" class="waves-effect">Выйти</a>
+            </li>
+          </ul>
+        </li>
+        <!--/. Side navigation links -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a href="/" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-dn mr-auto">
+        <p>Fox Hustle</p>
+      </div>
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href=""><i class="fas fa-bell"></i></a>
+        </li>
+        <li class="nav-item mr-auto dropdown">
+          <a class="nav-link" href=""><i class="far fa-comments"></i></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user d-sm-none"></i>
+            <span class="clearfix d-none d-sm-inline-block">  
+              {{ my_profile.first_name }} {{ my_profile.last_name }}
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Моя страница</a>
+            <a class="dropdown-item" href="#">Настройки</a>
+            <a class="dropdown-item" href="#">Помощь</a>
+            <hr style="margin: 0px; margin-bottom: 7px;">
+            <a class="dropdown-item" href="/logout">Выйти</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.Navbar -->
+  </header>
+  <main >
+    <div class="d-none d-sm-block jumbotron card card-image"" style="background-image: url('https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg'); margin-bottom: -8rem;"></div>
+    <!--/.Double navigation-->
+    <div class="container mt-md-5">
+      <div class="row">
+        <div class="order-lg-2 col-lg-3">
+          <div class="">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <!--<div class="col-4 col-lg-12 mb-2" style="border-radius: 25px;">
+                    <img alt="Avatar's welc32#1" src="https://pp.userapi.com/c858336/v858336670/2ad68/NDD2lFxjvj8.jpg?ava=1" class="rounded w-100">
+                  </div>-->
+                  <div class="col-8 col-lg-12 mb-2">
+                    <table class="h-100 w-100">
+                      <tbody>
+                        <tr>
+                          <td class="align-bottom">
+                            <div class="card">
+                              <span class="align-bottom m-2">
+                                <h5 class="h5">
+                                  {% if profile.verifery %}
+                                    <i class="fas fa-check"></i>
+                                  {% endif %}
+                                  <span>{{ profile.first_name }}</span>
+                                  <span>{{ profile.last_name }}</span>
+                                  <span>({{ profile.nickname }})</span><br>
+                                </h5>
+                                <h6>
+                                    <span>{{ profile.online }}</span>
+                                </h6>
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="button-group">
+                  <button id="btnGroupDrop1" type="button" class="btn wafes-effect btn-info mb-2 btn-block dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Действия
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="width: calc( 100% - 30px );">
+                    <button type="button" class="btn btn-block btn-info mb-2 wafes-effect">
+                      Написать
+                    </button>
+                    <button type="button" class="btn btn-block btn-info mb-2 wafes-effect">
+                      Отписаться
+                    </button> 
+                    <button type="button" class="btn btn-block btn-info mb-2 wafes-effect">
+                      Подписаться
+                    </button>
+                    <button type="button" class="btn btn-block btn-info mb-2 wafes-effect">
+                      Отправить деньги
+                    </button>
+                    <button type="button" class="btn btn-block btn-info wafes-effect">
+                      Добавить в ссылки
+                    </button>
+                  </div>
+                  <div class="row mb-sm-2">
+                    <div class="col-6 mb-2 col-sm-12 pr-1 pr-sm-3">
+                      <button 
+                        id="modal-683245" 
+                        href="#modal-container-683245" 
+                        role="button" 
+                        data-toggle="modal" 
+                        type="button" 
+                        class="btn wafes-effect btn-info btn-block h-100">
+                        Подписки
+                      </button>
+                    </div>
+                    <div class="col-6 mb-2 col-sm-12 pl-1 pl-sm-3">
+                      <button 
+                        id="modal-683246" 
+                        href="#modal-container-683246" 
+                        role="button" 
+                        data-toggle="modal" 
+                        type="button" 
+                        class="btn wafes-effect btn-info btn-block h-100">
+                        Подписчики
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="m-1 sticky text-white p-2 float-right text-center" id="upbutton" style="background-color: #5b8bba; display: none; top: 70px; border-radius: 7px;">
+            Наверх
+          </span>
+        </div>
+        <div class="col-lg-9 order-lg-1 mt-lg-5 pt-lg-5">
+      <ul class="nav nav-tabs md-tabs d-flex justify-content-between sticky" id="myTabEx" role="tablist" style="margin: 0px !important; top: 50px;">
+        <li>
+          <ul class="nav">
+            <li class="nav-item active waves-effect waves-light">
+              <a class="nav-link active" id="walls-tab-ex" data-toggle="tab" href="#walls-ex" role="tab" aria-controls="walls-ex"
+                aria-selected="false">Записи</a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a class="nav-link" id="info-tab-ex" data-toggle="tab" href="#info-ex" role="tab" aria-controls="info-ex"
+                aria-selected="true">Информация</a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a class="nav-link" id="discussion-tab-ex" data-toggle="tab" href="#discussion-ex" role="tab" aria-controls="discussion-ex"
+                aria-selected="false">Обсуждения</a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a class="nav-link" id="settings-tab-ex" data-toggle="tab" href="#settings-ex" role="tab" aria-controls="settings-ex"
+                aria-selected="false">Настройки</a>
+            </li>
+          </ul>
+        </li>
+        <li class="d-none d-md-block text-white">
+          <ul class="nav">
+            <li class="align-right">
+              <a href="http://vk.com/welc32" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+              <i class="fab fa-vk"></i></a>
+            </li>
+            <li class="align-right">
+              <a href="http://youtube.com/" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+              <i class="fab fa-youtube"></i></a>
+            </li>
+            <li class="align-right">
+              <a href="https://www.facebook.com/ikanyshev" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+              <i class="fab fa-facebook"></i></a>
+            </li>
+            <li class="align-right">
+              <a id="btnGroupDrop1" class="wafes-effect dropdown-toggle nav-link" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="padding: .5rem .2rem">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a href="https://twitter.com/ikanyshev" class="dropdown-item waves-effect waves-light d-block">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="https://github.com/welc32" class="dropdown-item waves-effect waves-light d-block">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://instagram.com/welc_32" class="dropdown-item waves-effect waves-light d-block">
+                  <i class="fab fa-instagram"></i> Instagram
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="tab-content pl-0 pr-0" id="myTabContentEx">
+        <div class="tab-pane fade active show" id="walls-ex" role="tabpanel" aria-labelledby="walls-tab-ex">
+          <div class="row">
+            <!-- Walls block-->
+            <div class="col-md-12" id="wall">
+              <a href="/pay/1">Перейти к оплате</a>
+              <!-- Wall Block-->
+              {% for post in profile.walls %}
+              <div class="card mb-4" id="1">
+                <h5 class="card-header">
+                  <div class="m-0">
+                    <div class="row">
+                      <div class="col-11 float-left">
+                        <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                          {{ post.author.first_name }} {{ post.author.last_name }}
+                        </div>
+                        <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                          {{ post.published_date.hour }}:{{ post.published_date.minute }} {{ post.published_date.day }}.{{ post.published_date.month }}.{{ post.published_date.year }}
+                        </div>
+                      </div>
+                      <div class="col-1 float-right text-right">
+                        <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                          <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                          <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                          <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--&times;-->
+                </h5>
+                <div class="card-body">
+                  <div class="row">
+                    <!-- Short body card -->
+                    <div class="col-md-7 col-12 short">
+                      <p class="card-text">
+                        {{ post.text }}
+                      </p>
+                      <a class="a card-link" onclick="$('#1 .long').show(); $('#1 .short').hide();">Читать далее...</a>
+                    </div>
+                    <!-- Long body card -->
+                    <div class="col-md-7 col-12 long" style="display: none;">
+                      <p class="card-text">
+                          {{ post.text }}<br>
+                          {{ post.text }}<br>
+                          {{ post.text }}<br>
+                          {{ post.text }}<br>
+                          {{ post.text }}<br>
+                          {{ post.text }}
+                      </p>
+                      <a class="a card-link" onclick="$('#1 .long').hide(); $('#1 .short').show();">Скрыть</a>
+                    </div>
+                    <!-- Attachments 
+                    <div class="col-md-5 col-12">
+                      <div class="card mb-3 b-0">
+                        <ul class="rslides row" style="height: 0px !important;">
+                          <li class="col-12 text-center">
+                            <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                          </li>
+                          <li class="col-12 text-center">
+                            <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                          </li>
+                        </ul>
+                      </div>
+                    </div>-->
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="row">
+                    <div class="col-12 col-md-9">
+                      <p class="text-footer">
+                        <a href="#" class="link-footer">10 комментариев</a>
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-3 text-md-right">
+                      <a href="#" class="link-footer">
+                        <i class="far fa-heart"></i> Мне нравится
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End wall-->
+              {% endfor %}
+            </div>
+            <!-- End walls block-->
+          </div>
+        </div>
+        <div class="tab-pane fade" id="info-ex" role="tabpanel" aria-labelledby="info-tab-ex">
+          <div class="card mb-4">
+            <div class="card-body">
+              <p class="card-text">
+                <div class="row">
+                  <div class="col-12" id="informationsUser">
+                    
+                    <!-- Activity -->
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-12 col-sm-4">
+                        Последняя активность
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        {{ profile.online }}
+                      </div>
+                    </div>
+
+                    <!-- City -->
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-12 col-sm-4">
+                        Город
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        <a href="/search?city=moscow" class="link">Moscow</a>
+                      </div>
+                    </div>
+
+                    <!-- Marital status -->
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-12 col-sm-4">
+                        Семейное положение
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        женат на <span><a href="#">Елене Беляевой <i class="fas fa-check"></i></a></span>
+                      </div>
+                    </div>
+
+                    <!-- Birtday -->
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-12 col-sm-4">
+                        День рождения
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        05.09.2000
+                      </div>
+                    </div>
+
+                    <!-- Web-site -->
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-12 col-sm-4">
+                        Веб-сайт
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        <a href="http://foxhustle.ru/welc32" class="link">http://foxhustle.ru/welc32</a>
+                      </div>
+                    </div>
+
+                    <!-- Registration date -->
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-12 col-sm-4">
+                        Дата регистрации
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        24.09.2014
+                      </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="row d-flex justify-content-end d-md-none">
+                        <div class="col-12 col-sm-4">
+                        Подключенные сервисы
+                      </div>
+                      <div class="col-11 col-sm-8 align-right">
+                        <ul class="nav w-100">
+                          <li>
+                            <a href="http://vk.com/welc32" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+                            <i class="fab fa-vk"></i></a>
+                          </li>
+                          <li>
+                            <a href="http://youtube.com/" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+                            <i class="fab fa-youtube"></i></a>
+                          </li>
+                          <li>
+                            <a href="https://www.facebook.com/ikanyshev" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+                            <i class="fab fa-facebook"></i></a>
+                          </li>
+                          <li>
+                            <a href="https://twitter.com/ikanyshev" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+                            <i class="fab fa-twitter"></i></a>
+                          </li>
+                          <li>
+                            <a href="https://github.com/welc32" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+                            <i class="fab fa-github"></i></a>
+                          </li>
+                          <li>
+                            <a href="https://instagram.com/welc_32" class="nav-link wafes-effect" style="padding: .5rem .2rem">
+                            <i class="fab fa-instagram"></i></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="discussion-ex" role="tabpanel" aria-labelledby="discussion-tab-ex">
+          <div class="card mb-4">
+            <div class="card-body">
+              <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="th-sm">Название
+                    </th>
+                    <th class="th-sm">Последний комментарий
+                    </th>
+                    <th class="th-sm">Дата последнего обновления
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="">
+                  <tr>
+                    <td>Чатик:3</td>
+                    <td><i class="font-weight-bold"><img src="https://pp.userapi.com/c858336/v858336670/2ad6b/gx6fTYNKDpM.jpg?ava=1" class="rounded-circle"/> Илья Канышев: </i>Куку уебы</td>
+                    <td>Вчера в 13:47</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th class="th-sm">Название
+                    </th>
+                    <th class="th-sm">Последний комментарий
+                    </th>
+                    <th class="th-sm">Дата последнего обновления
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="settings-ex" role="tabpanel" aria-labelledby="settings-tab-ex">
+          <div class="card mb-4">
+            <div class="card-body">
+              <p class="card-text">
+                <div class="row">
+                  <div class="col-md-2">
+                    <ul class="nav md-pills pills-primary flex-column" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#panel22" role="tab">
+                          Управление
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel26" role="tab">
+                          Безопасность
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel23" role="tab">
+                          Ссылки
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel24" role="tab">
+                          Денежные переводы
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel25" role="tab">
+                          Работа с API
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="tab-content vertical">
+                      <div class="tab-pane fade in show active" id="panel22" role="tabpanel">
+                        <ul class="nav nav-tabs" id="myTabEx" role="tablist">
+                          <li class="nav-item active waves-effect waves-light">
+                            <a class="nav-link active" id="edit-tab-ex" data-toggle="tab" href="#edit-ex" role="tab" aria-controls="edit-ex"
+                              aria-selected="false">Управление</a>
+                          </li>
+                          <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="privaty-tab-ex" data-toggle="tab" href="#privaty-ex" role="tab" aria-controls="privaty-ex"
+                              aria-selected="true">Приватность</a>
+                          </li>
+                          <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="info-settings-tab-ex" data-toggle="tab" href="#info-settings-ex" role="tab" aria-controls="info-settings-ex"
+                              aria-selected="true">Информация</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content pt-5" id="myTabContentEx">
+                          <div class="tab-pane fade show active" id="edit-ex" role="tabpanel" aria-labelledby="edit-tab-ex">
+                            
+                            <form class="form-horizontal">
+                              <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Фамилия</label>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="text" placeholder="Иванов" class="form-control input-md">
+                                </div>
+                              </div>
+                            
+                              <!-- Text input-->
+                              <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Имя</label>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="text" placeholder="Иван" class="form-control input-md">
+                                </div>
+                              </div>
+                            
+                              <!-- Text input-->
+                              <div class="form-group">
+                                <div class="col-md-4 control-label" for="textinput">Имя пользователя</div>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="text" placeholder="example" class="form-control input-md" required="">
+                                </div>
+                              </div>
+
+                                <!-- Button -->
+                              <div class="form-group">
+                                <div class="col-md-12">
+                                  <button id="singlebutton" name="singlebutton" class="btn btn-info">Сохранить</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="tab-pane fade" id="info-settings-ex" role="tabpanel" aria-labelledby="info-settings-tab-ex">
+                            <form class="form-horizontal">
+                              <!-- Textarea -->
+                              <div class="form-group">
+                                <label class="col-md-4 control-label" for="textarea">Краткая информация о вас</label>
+                                <div class="col-md-12">                     
+                                  <textarea class="form-control" id="textarea" name="textarea"></textarea>
+                                </div>
+                              </div>
+
+                              <!-- Text input-->
+                              <div class="form-group">
+                                <div class="col-md-4 control-label" for="textinput">Страна</div>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="text" placeholder="Россия" class="form-control input-md">
+                                </div>
+                              </div>
+                              
+                              <!-- Text input-->
+                              <div class="form-group">
+                                <div class="col-md-4 control-label" for="textinput">Город</div>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="text" placeholder="Санкт-Петербург" class="form-control input-md">
+                                </div>
+                              </div>
+                              
+                              <!-- Text input-->
+                              <div class="form-group">
+                                <div class="col-md-4 control-label" for="textinput">Родной город</div>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="text" placeholder="Казань" class="form-control input-md">
+                                </div>
+                              </div>
+                              
+                              <!-- Text input-->
+                              <div class="form-group">
+                                <div class="col-md-4 control-label" for="textinput">Дата рождения</div>  
+                                <div class="col-md-12">
+                                  <input id="textinput" name="textinput" type="date" placeholder="01.01.1970" class="form-control input-md" required="">
+                                </div>
+                              </div>
+                              
+                                <!-- Button -->
+                              <div class="form-group">
+                                <div class="col-md-12">
+                                  <button id="singlebutton" name="singlebutton" class="btn btn-info">Сохранить</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="tab-pane fade" show active id="privaty-ex" role="tabpanel" aria-labelledby="privaty-tab-ex">
+                            
+                            <form class="form-horisontal">
+                          
+                            <!-- Select Basic -->
+                              <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">Кто может писать вам сообщения</label>
+                                <div class="col-md-12">
+                                  <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="all_users">Все пользователи</option>
+                                    <option value="only_subscribers">Только подписки</option>
+                                    <option value="none">Никто</option>
+                                  </select>
+                                </div>
+                              </div>
+                              
+                                <!-- Select Basic -->
+                              <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">Кто может отправлять вам чеки</label>
+                                <div class="col-md-12">
+                                  <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="all_users">Все пользователи</option>
+                                    <option value="only_subscribers">Только подписки</option>
+                                    <option value="none">Никто</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                                <!-- Button -->
+                              <div class="form-group">
+                                <div class="col-md-12">
+                                  <button id="singlebutton" name="singlebutton" class="btn btn-info">Сохранить</button>
+                                </div>
+                              </div>
+  
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="panel26" role="tabpanel">
+                        <ul class="nav nav-tabs" id="myTabEx" role="tablist">
+                          <li class="nav-item active waves-effect waves-light">
+                            <a class="nav-link active" id="history-security-tab-ex" data-toggle="tab" href="#history-security-ex" role="tab" aria-controls="history-security-ex"
+                              aria-selected="false">История входов</a>
+                          </li>
+                          <li class="nav-item active waves-effect waves-light">
+                            <a class="nav-link" id="accessed-app-tab-ex" data-toggle="tab" href="#accessed-app-ex" role="tab" aria-controls="accessed-app-ex"
+                              aria-selected="false">Приложения</a>
+                          </li>
+                          <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="settings-security-tab-ex" data-toggle="tab" href="#settings-security-ex" role="tab" aria-controls="settings-security-ex"
+                              aria-selected="true">Настройки</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content pt-5" id="myTabContentEx">
+                          <div class="tab-pane fade show active" id="history-security-ex" role="tabpanel" aria-labelledby="history-security-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-header">
+                                История входов
+                              </div>
+                              <div class="card-body">
+                                <table id="login-history" class="table table-striped table-bordered w-100">
+                                  <thead>
+                                    <tr>
+                                      <td class="th">
+                                        Дата и время
+                                      </td>
+                                      <td class="th-sm">
+                                        IP
+                                      </td>
+                                      <td class="th-sm">
+                                        Местоположение
+                                      </td>
+                                    </tr>
+                                  </thead>
+                                  <body>
+                                    <tr>
+                                      <td>
+                                        24.09.2014 16:36
+                                      </td>
+                                      <td>
+                                        122.56.18.0
+                                      </td>
+                                      <td>
+                                        Москва, Россия
+                                      </td>
+                                    </tr>
+                                  </body>
+                                  <tfooter>
+                                    <tr>
+                                      <td>
+                                        Дата и время
+                                      </td>
+                                      <td>
+                                        IP
+                                      </td>
+                                      <td>
+                                        Местоположение
+                                      </td>
+                                    </tr>
+                                  </tfooter>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="accessed-app-ex" role="tabpanel" aria-labelledby="accessed-app-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-header">
+                                Приложения
+                              </div>
+                              <div class="card-body">
+                                <table id="app-history" class="table table-striped table-bordered w-100">
+                                  <thead>
+                                    <tr>
+                                      <td class="th-sm">
+                                        Дата и время
+                                      </td>
+                                      <td class="th-sm">
+                                        IP
+                                      </td>
+                                      <td class="th-sm">
+                                        Местоположение
+                                      </td>
+                                    </tr>
+                                  </thead>
+                                  <body>
+                                    <tr>
+                                      <td>
+                                        24.09.2014 16:36
+                                      </td>
+                                      <td>
+                                        122.56.18.0
+                                      </td>
+                                      <td>
+                                        Москва, Россия
+                                      </td>
+                                    </tr>
+                                  </body>
+                                  <tfooter>
+                                    <tr>
+                                      <td>
+                                        Дата и время
+                                      </td>
+                                      <td>
+                                        IP
+                                      </td>
+                                      <td>
+                                        Местоположение
+                                      </td>
+                                    </tr>
+                                  </tfooter>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="settings-security-ex" role="tabpanel" aria-labelledby="settings-security-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-header">
+                                CallBack-подключение:
+                              </div>
+                              <div class="card-body">
+                                <form action="post">
+                                  
+                                  <!-- Password input-->
+                                  <div class="form-group">
+                                    <label class="col-md-4 control-label" for="passwordinput">Пароль</label>
+                                    <div class="col-md-12">
+                                      <input id="passwordinput" name="passwordinput" type="password" placeholder="********" class="form-control input-md">
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="panel23" role="tabpanel">
+                        <h5 class="my-2 h1">Сделай меня!</h5>
+                      </div>
+                      <div class="tab-pane fade" id="panel24" role="tabpanel">
+                        <ul class="nav nav-tabs" id="myTabEx" role="tablist">
+                          <li class="nav-item active waves-effect waves-light">
+                            <a class="nav-link active" id="settings-transactions-tab-ex" data-toggle="tab" href="#settings-transactions-ex" role="tab" aria-controls="settings-transactions-ex"
+                              aria-selected="false">Настройки переводов</a>
+                          </li>
+                          <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="history-transactions-tab-ex" data-toggle="tab" href="#history-transactions-ex" role="tab" aria-controls="history-transactions-ex"
+                              aria-selected="true">История переводов</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content pt-5" id="myTabContentEx">
+                          <div class="tab-pane fade show active" id="settings-transactions-ex" role="tabpanel" aria-labelledby="settings-transactions-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-body">
+                                <p class="card-text">
+                                    Какие-то настройки переводов
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="history-transactions-ex" role="tabpanel" aria-labelledby="history-transactions-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-body">
+                                <p class="card-text">
+                                  <table id="history-transactions-table" class="table table-striped table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th class="th-sm">Пользователь
+                                        </th>
+                                        <th class="th-sm">Изменение баланса
+                                        </th>
+                                        <th class="th-sm">Баланс
+                                        </th>
+                                        <th class="th-sm">Дата
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>welc32#1</td>
+                                        <td class="font-weight-bold" style="color:green;">+100 Rub</td>
+                                        <td>707 Rub</td>
+                                        <td>Вчера в 13:47</td>
+                                      </tr>
+                                      <tr>
+                                        <td>admin#2</td>
+                                        <td class="font-weight-bold" style="color:red;">-100 K</td>
+                                        <td>97 K</td>
+                                        <td>Сегодня в 9:13</td>
+                                      </tr>
+                                    </tbody>
+                                    <tfoot>
+                                      <tr>
+                                        <th class="th-sm">Пользователь
+                                        </th>
+                                        <th class="th-sm">Изменение баланса
+                                        </th>
+                                        <th class="th-sm">Баланс
+                                        </th>
+                                        <th class="th-sm">Дата
+                                        </th>
+                                      </tr>
+                                    </tfoot>
+                                  </table>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="panel25" role="tabpanel">
+                        <ul class="nav nav-tabs" id="myTabEx" role="tablist">
+                          <li class="nav-item active waves-effect waves-light">
+                            <a class="nav-link active" id="keys-tab-ex" data-toggle="tab" href="#keys-ex" role="tab" aria-controls="keys-ex"
+                              aria-selected="false">Ключи доступа</a>
+                          </li>
+                          <li class="nav-item active waves-effect waves-light">
+                            <a class="nav-link" id="longpoll-tab-ex" data-toggle="tab" href="#longpoll-ex" role="tab" aria-controls="longpoll-ex"
+                              aria-selected="false">LongPoll</a>
+                          </li>
+                          <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="callback-tab-ex" data-toggle="tab" href="#callback-ex" role="tab" aria-controls="callback-ex"
+                              aria-selected="true">CallBack</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content pt-5" id="myTabContentEx">
+                          <div class="tab-pane fade show active" id="keys-ex" role="tabpanel" aria-labelledby="keys-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-header">
+                                    Ключи доступа
+                              </div>
+                              <div class="card-body">
+                                <p class="card-text">
+                                    Настройки ключа доступа
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="longpoll-ex" role="tabpanel" aria-labelledby="longpoll-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-header">
+                                LongPoll-подключение:
+                              </div>
+                              <div class="card-body">
+                                <p class="card-text">
+                                    Тут должны быть какие-то настройки LongPoll-подключения
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="callback-ex" role="tabpanel" aria-labelledby="callback-tab-ex">
+                            <div class="card mb-4">
+                              <div class="card-header">
+                                CallBack-подключение:
+                              </div>
+                              <div class="card-body">
+                                <p class="card-text">
+                                    Тут должны быть какие-то настройки CallBack-подключения
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Main Layout-->
+  <a class="btn btn-info btn-lg" id="alert-target">Click me!</a>
+</main>
+<div class="modal align-center" id="modal-container-683245" role="dialog" aria-labelledby="myModalLabel" aria-modal="true" style="display: none;">
+    <div class="container " role="document">
+      <div class="modal-content container">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">
+            Подписки
+          </h5> 
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <section class="team-section text-center my-5" style="width: 100%;">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+                  <div class="avatar mx-auto">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1"
+                      alt="Sample avatar">
+                  </div>
+                  <h5 class="font-weight-bold mt-4 mb-3">Anna Williams</h5>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+                  <div class="avatar mx-auto">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1"
+                      alt="Sample avatar">
+                  </div>
+                  <h5 class="font-weight-bold mt-4 mb-3">Anna Williams</h5>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+                  <div class="avatar mx-auto">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1"
+                      alt="Sample avatar">
+                  </div>
+                  <h5 class="font-weight-bold mt-4 mb-3">Anna Williams</h5>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="modal align-center" id="modal-container-683246" role="dialog" aria-labelledby="myModalLabel" aria-modal="true" style="display: none;">
+  <div class="container " role="document">
+    <div class="modal-content container">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">
+          Подписчики
+        </h5> 
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <section class="team-section text-center my-5" style="width: 100%;">
+            <div class="row">
+              <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
+                <div class="avatar mx-auto">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1"
+                    alt="Sample avatar">
+                </div>
+                <h5 class="font-weight-bold mt-4 mb-3">Anna Williams</h5>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Закрыть
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static "www/js/jquery-3.4.1.min.js" %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static "www/js/popper.min.js" %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static "www/js/bootstrap.min.js" %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static "www/js/mdb.min.js" %}"></script>
+  <!-- MDBootstrap Datatables  -->
+  <link href="{% static "www/css/addons/datatables.min.css" %}" rel="stylesheet"> 
+  <!-- MDBootstrap Datatables  -->
+  <script type="text/javascript" src="{% static "www/js/addons/datatables.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "www/js/responsiveslides.min.js" %}"></script>
+  <script>
+    $(".button-collapse").sideNav();
+    // SideNav Initialization
+    function initScroll(string){
+      var menu = document.querySelector(string);
+      var ps = new PerfectScrollbar(menu);
+
+      var scrollbarY = menu.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
+
+      menu.onscroll = function() {
+        scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 100%; right: ${-this.scrollLeft}px`;
+      }
+      return [menu, ps, scrollbarY]
+    }
+    data = ['.scrollPhoto','.scrollbar-light-blue']
+    result = [0, 0, 0]
+    for (var i = 0; i<data.length;i++){
+      result[i]=initScroll(data[i])
+    }
+    toastr.options = {
+      "closeButton": true, // true/false
+      "debug": false, // true/false
+      "newestOnTop": true, // true/false
+      "progressBar": true, // true/false
+      "positionClass": "md-toast-bottom-right", // md-toast-top-right / md-toast-top-left / md-toast-bottom-right /
+      "preventDuplicates": false, 
+      "onclick": null,
+      "showDuration": "2000", // in milliseconds
+      "hideDuration": "2000", // in milliseconds
+      "timeOut": "10000", // in milliseconds
+      "extendedTimeOut": "2300", // in milliseconds
+      "showEasing": "swing",
+      "hideEasing": null,
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+    $("#alert-target").click(function () {
+      toastr["success"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+      toastr["info"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+      toastr["warning"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+      toastr["error"]("Оповещение! Ура! Ты выйграл мешок нихуя!", "Администрация")
+    });
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('#history-transactions-table').DataTable({'sort': false});
+      $('#login-history').DataTable({'sort': false});
+      $('#app-history').DataTable();
+      
+      $('.dataTables_length').addClass('bs-select');
+    });
+    /*
+    $('img:not(.photo-element)').click(
+      function(){
+        $('#photomax').removeClass('d-none');
+        var elem =  $('td#photo-element')
+        var w1 = elem.width()
+        elem.append('<img id="photo-element" class="h-100" src="'+this.src+'" />')
+        var data = $('img#photo-element')
+        var height = $(window).height()
+        console.log(0.9*height)
+        elem.height(0.9*height)
+        console.log(data.width())
+        console.log(elem.width())
+        if (data.width()>w1){
+          data.removeClass('h-100')
+          data.addClass('w-100')
+        }
+      }
+    )*/
+    function max(){
+      try{
+        var tmp = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+          if (tmp<arguments[i]){
+            tmp = arguments[i];
+          }
+        }
+        return tmp;
+      } catch (error) {
+        return 0;
+      }
+    }
+    function min(){
+      try{
+        var tmp = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+          if (tmp>arguments[i]){
+            tmp = arguments[i];
+          }
+        }
+        return tmp;
+      } catch (error) {
+        return 0;
+      }
+    }
+    function notification (data) {
+      return {
+        'text': data.text,
+        'block': data.block,
+        'closeFlag': false,
+        'close': function () {
+          if (!this.closeFlag){
+            this.closeFlag = true
+            this.block.remove()
+          }
+        }
+      }
+    }
+    $(".rslides").responsiveSlides({
+      auto: true,             // Boolean: Animate automatically, true or false
+      speed: 200,             // Integer: Speed of the transition, in milliseconds
+      timeout: 8000,          // Integer: Time between slide transitions, in milliseconds
+      pager: false,           // Boolean: Show pager, true or false
+      nav: true,              // Boolean: Show navigation, true or false
+      random: false,          // Boolean: Randomize the order of the slides, true or false
+      pause: false,           // Boolean: Pause on hover, true or false
+      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+      prevText: "<i class='fas fa-angle-left'></i>",          // String: Text for the "previous" button
+      nextText: "<i class='fas fa-angle-right'></i>",          // String: Text for the "next" button
+      maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+      navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+      manualControls: "",     // Selector: Declare custom pager navigation
+      namespace: "rslides",   // String: Change the default namespace used
+      before: function(){},   // Function: Before callback
+      after: function(){}     // Function: After callback
+    });
+    $('#upbutton').click(function() {
+        $('html, body').stop().animate({scrollTop : 0}, 300);
+    });
+    window.onload = function() {
+      var a = document.getElementsByClassName("rslides");
+      for (var i = 0; i<a.length; i++){
+        var height = 0;
+        if (a[i].style.display != "none") {
+          var tmp = a[i].getElementsByClassName("col-12")
+          for(var j = 0; j<tmp.length; j++){
+            height = max(height, tmp[j].clientHeight)
+          }
+          for(var j = 0; j<tmp.length; j++){
+            if (height != tmp[j].clientHeight){
+              tmp[j].style.cssText = "margin-top: " + (height-tmp[j].clientHeight)/2 + "px"
+            }
+          }
+          a[i].style.cssText = "height: " + height + "px !important";
+        }
+      }
+      setInterval(function(){
+        if ($(this).scrollTop() > 400) {
+            if ($('#upbutton').is(':hidden')) {
+                $('#upbutton').css({opacity : 1}).fadeIn('fast');
+            }
+        } else { $('#upbutton').stop(true, false).fadeOut('fast'); }}, 100)
+    }
+  </script>
+</body>
+</html>

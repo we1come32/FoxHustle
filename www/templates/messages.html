@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Новости</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    /* Only for snippet */
+    .my-custom-scrollbar {
+      position: relative;
+      width: 800px;
+      height: 400px;
+      overflow: auto;
+    }
+    .modal-dialog {
+      width: 100% !important;
+    }
+    header i{
+      width: 2vh;
+      text-align: center;
+    }
+    @media (min-width: 993px){
+      .double-nav .brand-name {
+        display: none;
+      }
+    }
+    .search-form .search-list.active{
+      display: block !important;
+      position: relative;
+      width: 100%;
+    }
+    html, body {
+      background-color: #eee;
+    }
+    .btn{
+      padding: .84rem 0.5rem !important;
+    }
+  </style>
+</head>
+
+<body class="fixed-sn light-blue-skin">
+    <!--Double navigation-->
+  <div id="photomax" class="d-none w-100 fixed h-100" style="z-index: 10000; position: fixed;">
+    <div class="photo-item w-100 h-100">
+      <table class="w-100 h-100" style="padding-bottom: -100%;">
+        <tbody>
+          <tr class="w-100 h-100">
+            <td class="align-middle" style="opacity:0.9; background-color: #111;">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="w-100 h-100" style="z-index: 10001; top: 0; position: fixed;">
+        <tbody>
+          <tr class="w-100 h-100">
+            <td class="align-middle photomax">
+              <div class="row gray" style="text-align: center;">
+                <div class="col-md-12">
+                  <div class="row scrollPhoto">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-10">
+                      <div class="row" style="padding: 0px;">
+                        <div class="col-sm-12 col-md-8 black">
+                          <table class="w-100 h-100">
+                            <tbody>
+                              <tr class="w-100 h-100">
+                                <td class="align-middle" id="photo-element" style="text-align: center;">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-sm-12 col-md-4 grey" style="text-align: left;">
+                          <h6 class="w-sm-100 h-md-100">Hello))0)</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1" onclick="$('#photomax').addClass('d-none');$('img#photo-element').remove();"></div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <header style="height: auto !important">
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav fixed">
+      <ul class="form-elegant scrollbar-light-blue" style="max-height:100vh; padding-bottom:90px;;">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light align-center" style="height: 100%">
+            <a href="#" class="h-100">
+              <div class="w-100">
+                <div class="cols-12">
+                  <img src="./img/svg/Fox_logo.svg" class="img-fluid w-100 h-100 flex-center avatar">
+                </div>
+                <div class="cols-12 text-center font-weight-bold brand-name text-black" style="color: black; margin-top: -5vh; background-color: #4d769e;">
+                  Fox Hustle
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <!--/. Logo -->
+        <!--Search Form-->
+        <li>
+          <form class="search-form" role="search" action="search/">
+            <div class="form-group md-form mt-0 pt-1 waves-light">
+              <input type="text" class="form-control" placeholder="Найти...">
+            </div>
+          </form>
+        </li>
+        <!--/.Search Form-->
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion scrolling-navbar">
+            <li>
+              <a class="collapsible-header waves-effect arrow-r active">
+                <i class="fas fa-chevron-right"></i>
+                Меню
+                <i class="fas fa-angle-down rotate-icon"></i>
+              </a>
+              <div class="collapsible-body">
+                <ul>
+                  <li>
+                    <a href="index.html" class="waves-effect"><i class="fas fa-user"></i>Моя страница</a>
+                  </li>
+                  <li>
+                    <a href="news.html" class="waves-effect active"><i class="fas fa-columns"></i>Новости</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="fas fa-comments"></i>Сообщения</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="fas fa-user-friends"></i>Подписки</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="fas fa-bullhorn"></i>Рекомендации</a>
+                  </li>
+                  <li>
+                    <a href="#" class="waves-effect"><i class="far fa-bookmark"></i>Закладки</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-link"></i>
+                Ссылки<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-user-friends"></i>Fox Hustle</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-user-friends"></i>Рая</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-user-friends"></i>Fox Hustle Bot</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-user"></i>welc32#1</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i>
+                Настройки<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-shield-alt"></i>Безопасность</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-user-shield"></i>Приватность</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-cog"></i>Настройки пользователя</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-cog"></i>Настройки сайта</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i>Дополнительно<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-code"></i>Разработчикам</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-bug"></i>Баг-трекер</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-users"></i>О нас</a>
+                  </li>
+                  <li><a href="#" class="waves-effect"><i class="fas fa-question"></i>Помощь</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="waves-effect">Выйти</a>
+            </li>
+          </ul>
+        </li>
+        <!--/. Side navigation links -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-dn mr-auto">
+        <p>Fox Hustle</p>
+      </div>
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" 
+          id="notifications-link" 
+          href="#notifications-block"
+          role="button" 
+          data-toggle="modal"><i class="fas fa-bell"></i></a>
+        </li>
+        <li class="nav-item mr-auto dropdown">
+          <a class="nav-link" href=""><i class="far fa-comments"></i></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user d-sm-none"></i>
+            <span class="clearfix d-none d-sm-inline-block">
+              Сергей Лисицын
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Моя страница</a>
+            <a class="dropdown-item" href="#">Настройки</a>
+            <a class="dropdown-item" href="#">Помощь</a>
+            <hr style="margin: 0px; margin-bottom: 7px;">
+            <a class="dropdown-item" href="#">Выйти</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.Navbar -->
+  </header>
+  <main>
+    <!-- Double navigation -->
+    <div class="container mt-md-5 mb-5">
+      <div class="row">
+        <div class="col-12 col-lg-3 order-lg-2">
+          <div class="row h-100">
+            <div class="col-12 h-100">
+              <ul class="nav nav-tabs nav-vertival md-tabs m-0" role="group" aria-label="Vertical button group">
+                <li class="wafes-effect wafes-light w-md-100">
+                  <a class="nav-link active" id="news-tab-ex" data-toggle="tab" href="#news-ex" role="tab" aria-controls="news-ex"
+                            aria-selected="false">Новости</a>
+                </li>
+                <li class="wafes-effect wafes-light w-md-100">
+                  <a class="nav-link" id="recomendations-tab-ex" data-toggle="tab" href="#recomendations-ex" role="tab" aria-controls="recomendations-ex"
+                            aria-selected="false">Рекомендации</a>
+                </li>
+                <li class="wafes-effect wafes-light w-md-100">
+                  <a class="nav-link" id="local-news-tab-ex" data-toggle="tab" href="#local-news-ex" role="tab" aria-controls="local-news-ex"
+                            aria-selected="false">Локальные новости</a>
+                </li>
+                <li class="wafes-effect wafes-light w-md-100">
+                  <a class="nav-link" id="blog-tab-ex" data-toggle="tab" href="#blog-ex" role="tab" aria-controls="blog-ex"
+                            aria-selected="false">Блог</a>
+                </li>
+              </ul>
+              <span class="m-1 sticky text-white p-2 float-right text-center" id="upbutton" style="background-color: #5b8bba; display: none; top: 70px; border-radius: 7px;">
+                Наверх
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-9 order-lg-1">
+          <div class="row">
+            <div class="tab-content pt-0" id="myTabContentEx">
+              <div class="tab-pane fade active show" id="news-ex" role="tabpanel" aria-labelledby="news-tab-ex">
+                <div class="row">
+                  <!-- New wall block-->
+                  <div class="col-md-12 mb-5" id="new-wall">
+                    <div class="card">
+                      <h5 class="card-header h5" onclick="$('#new-wall .card-body').fadeToggle();$('#new-wall .card-footer').fadeToggle();">
+                        Новая запись
+                      </h5>
+                      <div class="card-body" style="display: none;">
+                          <div class="md-form">
+                            <textarea name="Text1" id="materialFormCardPasswordEx" class="form-control" cols="40" rows="5"></textarea>
+                            <label for="materialFormCardPasswordEx" class="font-weight-light">Текст записи</label>
+                          </div>
+                      </div>
+                      <div class="card-footer" style="display: none;"><button class="btn btn-info">Отправить</button></div>
+                    </div>
+                  </div>
+                  <!-- End new wall block-->
+                  <!-- Button to scroll top -->
+                  <div class="sticky col-12 center w-100 text-center" style="top: 70px;">
+                    <span class="center text-white p-2 br-2" style="background-color: #5b8bba; z-index: 3; border-radius: 15px;">
+                      Новые записи
+                    </span>
+                  </div>
+                  <!-- Walls block-->
+                  <div class="col-md-12" id="wall">
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="1">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#1 .long').show(); $('#1 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#1 .long').hide(); $('#1 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="2">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#2 .long').show(); $('#2 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#2 .long').hide(); $('#2 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="3">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#3 .long').show(); $('#3 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#3 .long').hide(); $('#3 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="4">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#4 .long').show(); $('#4 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#4 .long').hide(); $('#4 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                  </div>
+                  <!-- End walls block-->
+                </div>
+              </div>
+              <div class="tab-pane fade" id="recomendations-ex" role="tabpanel" aria-labelledby="recomendations-tab-ex">
+                <div class="row">
+                  
+                  <!-- Walls block-->
+                  <div class="col-md-12" id="wall">
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="5">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#5 .long').show(); $('#5 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#5 .long').hide(); $('#5 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="6">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#6 .long').show(); $('#6 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#6 .long').hide(); $('#6 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="7">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#7 .long').show(); $('#7 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#7 .long').hide(); $('#7 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="8">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#8 .long').show(); $('#8 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#8 .long').hide(); $('#8 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                  </div>
+                  <!-- End walls block-->
+                </div>
+              </div>
+              <div class="tab-pane fade" id="local-news-ex" role="tabpanel" aria-labelledby="local-news-tab-ex">
+                <div class="row">
+                  
+                  <!-- Walls block-->
+                  <div class="col-md-12" id="wall">
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="5">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#5 .long').show(); $('#5 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#5 .long').hide(); $('#5 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                  </div>
+                  <!-- End walls block-->
+                </div>
+              </div>
+              <div class="tab-pane fade" id="blog-ex" role="tabpanel" aria-labelledby="blog-tab-ex">
+                <div class="row">
+                  
+                  <!-- Walls block-->
+                  <div class="col-md-12" id="wall">
+                    <!-- Wall Block-->
+                    <div class="card mb-4" id="5">
+                      <h5 class="card-header">
+                        <div class="m-0">
+                          <div class="row">
+                            <div class="col-11 float-left">
+                              <div class="col-12 col-md-6 order-1 h5" style="margin-bottom: 0">
+                                Илья Канышев
+                              </div>
+                              <div class="col-12 col-md-6 order-2 h6" style="margin-bottom: 0; font-weight: 300">
+                                Вчера в 22:59 
+                              </div>
+                            </div>
+                            <div class="col-1 float-right text-right">
+                              <a id="btnGroupDrop1" class="wafes-effect mb-2 dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item waves-effect waves-light" href="#">Закрепить</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Редактировать</a>
+                                <a class="dropdown-item waves-effect waves-light" href="#">Удалить</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--&times;-->
+                      </h5>
+                      <div class="card-body">
+                        <div class="row">
+                          <!-- Short body card -->
+                          <div class="col-md-7 col-12 short">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#5 .long').show(); $('#5 .short').hide();">Читать далее...</a>
+                          </div>
+                          <!-- Long body card -->
+                          <div class="col-md-7 col-12 long" style="display: none;">
+                            <p class="card-text">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!<br>
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                              Error unde ut maiores ea corporis molestiae repudiandae 
+                              recusandae minus vel natus. Optio libero dolorem voluptates 
+                              fugiat, vitae debitis tenetur ab. Minus!
+                            </p>
+                            <a class="a card-link" onclick="$('#5 .long').hide(); $('#5 .short').show();">Скрыть</a>
+                          </div>
+                          <!-- Attachments -->
+                          <div class="col-md-5 col-12">
+                            <div class="card mb-3 b-0">
+                              <ul class="rslides row" style="height: 0px !important;">
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" alt="">
+                                </li>
+                                <li class="col-12 text-center">
+                                  <img class="" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b678feb6-db4d-4a25-8c83-bca6910cfb6b/ddcus0f-e547cc77-742f-4587-b80e-b30a73d52af1.jpg/v1/fill/w_784,h_1019,q_70,strp/white_haired_sci_fi_woman_warrior_pin_up_art__iray_by_shibashake_ddcus0f-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2I2NzhmZWI2LWRiNGQtNGEyNS04YzgzLWJjYTY5MTBjZmI2YlwvZGRjdXMwZi1lNTQ3Y2M3Ny03NDJmLTQ1ODctYjgwZS1iMzBhNzNkNTJhZjEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.i18WMI7yP7KG6GHB_Vb_aE6kdIFLW49mYXNv3Xooazg" alt="">
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-12 col-md-9">
+                            <p class="text-footer">
+                              <a href="#" class="link-footer">10 комментариев</a>
+                            </p>
+                          </div>
+                          <div class="col-12 col-md-3 text-md-right">
+                            <a href="#" class="link-footer">
+                              <i class="far fa-heart"></i> Мне нравится
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End wall-->
+                  </div>
+                  <!-- End walls block-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Main Layout-->
+    <a class="btn btn-info btn-lg" id="alert-target">Click me!</a>
+  </main>
+  <div class="modal align-center" id="notifications-block" role="dialog" aria-labelledby="myModalLabel" aria-modal="true" style="display: none;">
+    <div class="container " role="document">
+      <div class="modal-content container">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">
+            Оповещения
+          </h5> 
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <section class="notifications-block text-center my-5" style="width: 100%;">
+              <div class="row" id="notification-list">
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MDBootstrap Datatables  -->
+  <link href="css/addons/datatables.min.css" rel="stylesheet"> 
+  <!-- MDBootstrap Datatables  -->
+  <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+  <script type="text/javascript" src="js/responsiveslides.min.js"></script>
+  <script>
+    $(".button-collapse").sideNav();
+    // SideNav Initialization
+    function initScroll(string){
+      var menu = document.querySelector(string);
+      var ps = new PerfectScrollbar(menu);
+
+      var scrollbarY = menu.querySelector('.ps.ps--active-y>.ps__scrollbar-y-rail');
+
+      menu.onscroll = function() {
+        scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 100%; right: ${-this.scrollLeft}px`;
+      }
+      return [menu, ps, scrollbarY]
+    }
+    data = ['.scrollPhoto','.scrollbar-light-blue']
+    result = [0, 0, 0]
+    for (var i = 0; i<data.length;i++){
+      result[i]=initScroll(data[i])
+    }
+    notification = function(text, author, link) {
+        toastr.options = {
+        "closeButton": true, // true/false
+        "debug": false, // true/false
+        "newestOnTop": true, // true/false
+        "progressBar": true, // true/false
+        "positionClass": "md-toast-bottom-right", // md-toast-top-right / md-toast-top-left / md-toast-bottom-right /
+        "preventDuplicates": false, 
+        "onclick": function(){$("#notifications-link").click()},
+        "showDuration": "2000", // in milliseconds
+        "hideDuration": "2000", // in milliseconds
+        "timeOut": "10000", // in milliseconds
+        "extendedTimeOut": "2300", // in milliseconds
+        "showEasing": "swing",
+        "hideEasing": null,
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      if (link === undefined){
+        $(".notifications-block .row#notification-list").append("<div class='card col-12 col-lg-3'><h5 class='card-header'>"+author+"</h5><div class='card-body'>"+text+"</div></div>")
+      } else {
+        $(".notifications-block .row#notification-list").append("<div class='card col-12 col-lg-3'><h5 class='card-header'>"+author+"</h5><div class='card-body'>"+text+"</div><div class='card-footer'>"+"<a href='"+link+"'>Далее</a></div></div>")
+      }
+      toastr.info("Click here!", " New notification!")
+    }
+    $("#alert-target").click(function () {
+      notification("Hello, this is notification", "Administration")
+    });
+    /*
+    $('img:not(.photo-element)').click(
+      function(){
+        $('#photomax').removeClass('d-none');
+        var elem =  $('td#photo-element')
+        var w1 = elem.width()
+        elem.append('<img id="photo-element" class="h-100" src="'+this.src+'" />')
+        var data = $('img#photo-element')
+        var height = $(window).height()
+        console.log(0.9*height)
+        elem.height(0.9*height)
+        console.log(data.width())
+        console.log(elem.width())
+        if (data.width()>w1){
+          data.removeClass('h-100')
+          data.addClass('w-100')
+        }
+      }
+    )*/
+    function max(){
+      try{
+        var tmp = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+          if (tmp<arguments[i]){
+            tmp = arguments[i];
+          }
+        }
+        return tmp;
+      } catch (error) {
+        return 0;
+      }
+    }
+    function min(){
+      try{
+        var tmp = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+          if (tmp>arguments[i]){
+            tmp = arguments[i];
+          }
+        }
+        return tmp;
+      } catch (error) {
+        return 0;
+      }
+    }
+    $(".rslides").responsiveSlides({
+      auto: true,             // Boolean: Animate automatically, true or false
+      speed: 200,             // Integer: Speed of the transition, in milliseconds
+      timeout: 8000,          // Integer: Time between slide transitions, in milliseconds
+      pager: false,           // Boolean: Show pager, true or false
+      nav: true,              // Boolean: Show navigation, true or false
+      random: false,          // Boolean: Randomize the order of the slides, true or false
+      pause: false,           // Boolean: Pause on hover, true or false
+      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+      prevText: "<i class='fas fa-angle-left'></i>",          // String: Text for the "previous" button
+      nextText: "<i class='fas fa-angle-right'></i>",          // String: Text for the "next" button
+      maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+      navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+      manualControls: "",     // Selector: Declare custom pager navigation
+      namespace: "rslides",   // String: Change the default namespace used
+      before: function(){},   // Function: Before callback
+      after: function(){}     // Function: After callback
+    });
+    checkSliders = function(flag) {
+      var a = document.getElementsByClassName("rslides");
+      s = ""
+      for (var i = 0; i<a.length; i++){
+        var height = 300;
+        var tmp = a[i].getElementsByClassName("col-12")
+        for(var j = 0; j<tmp.length; j++){
+          tmpHeight = tmp[j].clientHeight - tmp[j].style.marginTop
+          height = max(height, tmpHeight)
+        }
+        for(var j = 0; j<tmp.length; j++){
+          tmpHeight = tmp[j].clientHeight - tmp[j].style.marginTop
+          if (height != tmpHeight){
+            s += tmp[j].clientHeight + " "
+            tmp[j].style.marginTop = (height - tmpHeight)/2  + "px"
+          }
+        }
+        a[i].style.cssText = "height: " + height + "px !important";
+      }
+      console.log(s)
+    }
+    $('#upbutton').click(function() {
+        $('html, body').stop().animate({scrollTop : 0}, 300);
+    });
+    window.onload = function(){
+      checkSliders(true);
+      setInterval(checkSliders, 1000, false)
+      setInterval(function(){
+        if ($(this).scrollTop() > 400) {
+            if ($('#upbutton').is(':hidden')) {
+                $('#upbutton').css({opacity : 1}).fadeIn('fast');
+            }
+        } else { $('#upbutton').stop(true, false).fadeOut('fast'); }}, 100)
+    }
+  </script>
+</body>
+
+</html>
