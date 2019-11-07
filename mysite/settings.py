@@ -25,7 +25,7 @@ SECRET_KEY = 'n9wcfzxi(i^mo3x6^)qrj3^!(mtrq!s+q%@8)nyma5@_)8p%4='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_URL = ['127.0.0.1', 'localhost', 'foxhustle.ru', 'foxhustle.online']
+ALLOWED_URL = ['127.0.0.1', 'localhost', 'foxhustle.ru']
 ALLOWED_SUBDOMENS = ['user', 'api', 'pay', 'docs', '']
 ALLOWED_HOSTS = []
 for url in ALLOWED_URL:
@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'background_task',
-    'sslserver',
     'api',
     'www',
 ]
