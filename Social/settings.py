@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'send_email.apps.SendEmailConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,3 +130,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# email settings
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'no-reply@foxhustle.ru'
+EMAIL_HOST_PASSWORD = 'mNC-Dwq-5pJ-jtc'
+DEFAULT_FROM_EMAIL = 'FoxHustle'
+DEFAULT_TO_EMAIL = 'admin@foxhustle.ru'

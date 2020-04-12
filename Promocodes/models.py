@@ -4,7 +4,7 @@ from datetime import datetime
 # Create your models here.
 
 class Promocode(models.Model):
-    code = models.CharField(default = "", max_length = 20)
+    code = models.CharField(default = "", max_length = 24)
     action = models.CharField(default = "", max_length = 100)
     count = models.BigIntegerField(default = 0)
     used = models.BigIntegerField(default = 0)
