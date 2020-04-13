@@ -140,3 +140,42 @@ EMAIL_HOST_USER = 'no-reply@foxhustle.ru'
 EMAIL_HOST_PASSWORD = 'mNC-Dwq-5pJ-jtc'
 DEFAULT_FROM_EMAIL = 'FoxHustle'
 DEFAULT_TO_EMAIL = 'admin@foxhustle.ru'
+
+
+PAGE_SETTINGS = {
+                    'page':{
+                        'imageCarusel': False,
+                        'walls': True,
+                        'information': False,
+                    },
+                    'leftmenu': {
+                        'search': False,
+                        'menu': {
+                            'all': True,
+                            'mypage':True,
+                            'news': True,
+                            'messages': True,
+                            'friends': True,
+                            'groups': False,
+                        },
+                        'links': False,
+                        'system': {
+                            'all': False,
+                            'settings': False,
+                            'ads': False,
+                            'bugtracker': False,
+                            'logging': False,
+                            'onlinestatistic': False,
+                        },
+                        'etc': {
+                            'all': False,
+                            'about': False,
+                            'dev': False,
+                            'blog': False,
+                            'jobs': False,
+                            'laws': False,
+                            'secutiry': False,
+                            'securityData': False,
+                        },
+                    },
+                }

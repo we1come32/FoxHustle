@@ -18,8 +18,10 @@ from django.urls import path
 from django.conf.urls import url, include
 from send_email import views
 from Auth import views as Auth
+from Profile import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('email_confirm/', Auth.confirm_email),
+    path('profile/<str:id>/', views.general),
 ]

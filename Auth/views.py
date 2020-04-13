@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from . import models
 from Profile.models import Permission
+from Profile.models import Profile as Profiles
+from Profile.models import Notification
 
 # Create your views here.
 
@@ -63,6 +65,65 @@ def decoding(data):
             'type': 'bot',
             'id': int(_result[1:12]),
         }
+
+# function for get information about any users, who enter the site
+def getUser(request):
+    class AuthProfileData:
+        params = {
+            'AuthAccess': 0,
+            'AppsAccess': 0,
+            'BugtrackerAccess': 0,
+            'ExperienceAccess': 0,
+            'GoodsAccess': 0,
+            'GroupAccess': 0,
+            'PaymentAccess': 0,
+            'ProfileAccess': 0,
+            'MessageAccess': 0,
+            'SysAccess': 0,
+            'DevLogsAccess': 0,
+        }
+        user = 0
+        worked = False
+        def accept(self):
+            return self.worked
+        def allow(self, param=""):
+            if param in self.params:
+                return self.params[param]
+            return 0
+        def json(self):
+            return {
+                'perms': { key: value for key, value in self.params.items() },
+                'profile': self.user.json(),
+                'slug': self.user.id,
+                'notifications': [notification.json() for notification in Notification.objects.filter(author=self.user, unread=False)],
+            }
+    access_token = request.session.get('access_token', False)
+    tmpData = AuthProfileData()
+    if access_token:
+        try:
+            user = decoding(access_token)
+            app = models.AuthApp.objects.get(id=user['app_id'])
+            user = Profiles.objects.get(id=user['id'])
+            perms = user.perms + app.perms
+            tmpData.user = user
+            tmpData.params['AuthAccess'] = perms.AuthAccess
+            tmpData.params['AppsAccess'] = perms.AppsAccess
+            tmpData.params['BugtrackerAccess'] = perms.BugtrackerAccess
+            tmpData.params['ExperienceAccess'] = perms.ExperienceAccess
+            tmpData.params['GoodsAccess'] = perms.GoodsAccess
+            tmpData.params['GroupAccess'] = perms.GroupAccess
+            tmpData.params['PaymentAccess'] = perms.PaymentAccess
+            tmpData.params['ProfileAccess'] = perms.ProfileAccess
+            tmpData.params['MessageAccess'] = perms.MessageAccess
+            tmpData.params['SysAccess'] = perms.SysAccess
+            tmpData.params['DevLogsAccess'] = perms.DevLogsAccess
+            tmpData.worked = True
+        except Exception as e:
+            tmpData.worked = False
+    return tmpData
+    
+
+
 
 def login(request, app=1):
     data = {}

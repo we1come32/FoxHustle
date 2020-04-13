@@ -118,7 +118,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item"><a class="link-color" href="/">Профиль</a></li>
-                            <li class="breadcrumb-item" aria-current="page">{{ user.slug }}</li>
+                            <li class="breadcrumb-item" aria-current="page">{{ user.nickname }}#{{ user.id }}</li>
                         </ol>
                     </div>
                 </div>
@@ -129,6 +129,7 @@
             <div class="collapse fixed-top navbar-collapse col-lg-2 background-2 d-lg-block w-100 h-100 align-left" id="navbarNavDropdown" style="z-index: 1020;">
                 <ul class="navbar-nav h-100" id="left-menu" style="padding-top: 4.2rem!important">
                     <div class="overflow-y pr-3 h-100" style="margin-right: -15px;">
+                    {% if settings.leftmenu.search %}
                         <li class="nav-item active">
                             <form class="form-inline row mt-2 mx-lg-0">
                                 <input class="form-control mx-3 col mx-lg-0 background-3 text-color-3" type="search" placeholder="Найти..." aria-label="Search">
@@ -137,6 +138,8 @@
                                 </button>
                             </form>
                         </li>
+                    {% endif %}
+                    {% if settings.leftmenu.menu.all %}
                         <li class="nav-item">
                             <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#menu" aria-expanded="true" aria-controls="menu">
                                 <i class="fas fa-angle-right"></i>
@@ -145,39 +148,51 @@
                         </li>
                         <li id="menu" class="collapse show ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
                             <ul class="navbar-nav">
+                            {% if settings.leftmenu.menu.mypage %}
                                 <li class="nav-item link-color">
                                     <a class="nav-link link-color" href="/profile/{{ me.profile.slug }}">
                                         <i class="fas fa-user"></i>
                                         Моя страница
                                     </a>
                                 </li>
+                            {% endif %}
+                            {% if settings.leftmenu.menu.news %}
                                 <li class="nav-item">
                                     <a class="nav-link link-color" href="/news">
                                         <i class="fas fa-newspaper"></i>
                                         Новости
                                     </a>
                                 </li>
+                            {% endif %}
+                            {% if settings.leftmenu.menu.messages %}
                                 <li class="nav-item">
                                     <a class="nav-link link-color" href="/messages">
                                         <i class="fas fa-comment"></i>
                                         Cообщения
                                     </a>
                                 </li>
+                            {% endif %}
+                            {% if settings.leftmenu.menu.friends %}
                                 <li class="nav-item">
                                     <a class="nav-link link-color" href="/friends">
                                         <i class="fas fa-user-friends"></i>
                                         Друзья
                                     </a>
                                 </li>
-                                <!--li class="nav-item">
+                            {% endif %}
+                            {% if settings.leftmenu.menu.groups %}
+                                <li class="nav-item">
                                     <a class="nav-link link-color" href="#">
                                         <i class="fas fa-users"></i>
                                         Сообщества
                                     </a>
-                                </li-->
+                                </li>
+                            {% endif %}
                             </ul>
                         </li>
-                        <!--li class="nav-item">
+                    {% endif %}
+                    {% if settings.leftmenu.links %}
+                        <li class="nav-item">
                             <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#links" aria-expanded="true" aria-controls="links">
                                 <i class="fas fa-angle-right"></i>
                                 Ссылки
@@ -204,7 +219,9 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li-->
+                        </li>
+                    {% endif %}
+                    {% if settings.leftmenu.system.all %}
                         <li class="nav-item">
                             <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#system" aria-expanded="true" aria-controls="system">
                                 <i class="fas fa-angle-right"></i>
@@ -213,47 +230,50 @@
                         </li>
                         <li id="system" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
                             <ul class="navbar-nav">
-                                {% if me.perms.SysAccess %}
-                                <li class="nav-item link-color">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-tools"></i>
-                                        Настройки системы
-                                    </a>
-                                </li>
+                                {% if settings.leftmenu.system.settings and me.perms.SysAccess %}
+                                    <li class="nav-item link-color">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-tools"></i>
+                                            Настройки системы
+                                        </a>
+                                    </li>
                                 {% endif %}
-                                <!--li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-ad"></i>
-                                        Рекламный кабинет
-                                    </a>
-                                </li-->
-                                {% if me.perms.BugtrackerAccess%}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-bug"></i>
-                                        Баг-трекер
-                                    </a>
-                                </li>
+                                {% if settings.leftmenu.system.ads %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-ad"></i>
+                                            Рекламный кабинет
+                                        </a>
+                                    </li>
                                 {% endif %}
-                                {% if me.perms.DevLogsAccess %}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        Логи ошибок
-                                    </a>
-                                </li>
+                                {% if settings.leftmenu.system.bugtracker and me.perms.BugtrackerAccess %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-bug"></i>
+                                            Баг-трекер
+                                        </a>
+                                    </li>
                                 {% endif %}
-                                {% if me.perms.DevLogsAccess or me.perms.SysAccess %}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-globe"></i>
-                                        Онлайн статистика
-                                    </a>
-                                </li>
+                                {% if settings.leftmenu.system.logging and me.perms.DevLogsAccess %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Логи ошибок
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.system.onlinestatistic and me.perms.DevLogsAccess or settings.onlinestatistic and me.perms.SysAccess %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-globe"></i>
+                                            Онлайн статистика
+                                        </a>
+                                    </li>
                                 {% endif %}
                             </ul>
                         </li>
-                        {% if False %}
+                    {% endif %}
+                    {% if settings.leftmenu.etc.all %}
                         <li class="nav-item">
                             <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#etc" aria-expanded="true" aria-controls="etc">
                                 <i class="fas fa-angle-right"></i>
@@ -262,61 +282,75 @@
                         </li>
                         <li id="etc" class="nav-item collapse ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
                             <ul class="navbar-nav">
-                                <li class="nav-item link-color">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-info"></i>
-                                        О Fox Hustle
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-code"></i>
-                                        Разработчикам
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-bug"></i>
-                                        Блог
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-briefcase"></i>
-                                        Вакансии
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-gavel"></i>
-                                        Правовая информация
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-shield-alt"></i>
-                                        Центр безопасности
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-database"></i>
-                                        Защита данных
-                                    </a>
-                                </li>
+                                {% if settings.leftmenu.etc.about %}
+                                    <li class="nav-item link-color">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-info"></i>
+                                            О Fox Hustle
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.etc.dev %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-code"></i>
+                                            Разработчикам
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.etc.blog %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-bug"></i>
+                                            Блог
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.etc.jobs %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-briefcase"></i>
+                                            Вакансии
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.etc.laws %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-gavel"></i>
+                                            Правовая информация
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.etc.security %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-shield-alt"></i>
+                                            Центр безопасности
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.leftmenu.etc.securityData %}
+                                    <li class="nav-item">
+                                        <a class="nav-link link-color" href="#">
+                                            <i class="fas fa-database"></i>
+                                            Защита данных
+                                        </a>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </li>
-                        {% endif %}
+                    {% endif %}
                         <li class="clearfix"></li>
                     </div>
                     <div class="bt-1 align-bottom mb-2">
                         <hr class="w-100" style="border-top: 3px solid rgba(0,0,0,.1);">
                         <div class="nav-link link-color">
                             <a class="link-color" href="#">
-                                <img src="{{ me.profile.img }}" width="30" height="30" class="d-inline-block align-top" alt="Image">
-                                {{ me.profile.slug }}
+                                <img src="{{ me.profile.img }}" width="30" height="30" class="d-inline-block align-top" alt="Image" style="border-radius: 15px;">
+                                {{ me.profile.nickname }}#{{ me.profile.id }}
                             </a>
-                            {% if False %}
+                            {% if settings.settings %}
                             <a class="link-color float-right h-100" href="/settings">
                                 <i class="fas fa-cog"></i>
                             </a>
@@ -332,33 +366,33 @@
                         <div class="card background-4 text-color-4">
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    {{ user.name}} {{ user.surname }} ({{ user.slug }})
+                                    {{ user.name}} {{ user.surname }} ({{ user.nickname }}#{{ user.id }})
                                     {% if user.verifery %}
                                     <i class="fas fa-check text-color-1"></i>
                                     {% endif %}
                                 </h3>
-                                {% if False %}
+                                {% if settings.status %}
                                 *статус_текст*
                                 {% endif %}
                                 <hr>
-                                {% if False %}
+                                {% if settings.friends or settings.subscription or settings.friendssubscriber or settings.organization %}
                                 <div class="row">
-                                    {% if False %}
+                                    {% if settings.friends %}
                                     <div class="col text-center">
                                         223 друзей
                                     </div>
                                     {% endif %}
-                                    {% if False %}
+                                    {% if settings.subscription %}
                                     <div class="col text-center">
                                         34 подписчика
                                     </div>
                                     {% endif %}
-                                    {% if False %}
+                                    {% if settings.subscriber %}
                                     <div class="col text-center">
                                         56 подписок
                                     </div>
                                     {% endif %}
-                                    {% if False %}
+                                    {% if settings.organization %}
                                     <div class="col text-center">
                                         0 организаций
                                     </div>
@@ -374,36 +408,52 @@
                                         Записи
                                     </a>
                                 </li>
-                                {% if False %}
+                                {% if settings.imageCarusel %}
                                 <li class="nav-item">
                                     <a class="nav-link link-color" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
                                         Фотографии
                                     </a>
                                 </li>
                                 {% endif %}
+                                {% if settings.information %}
                                 <li class="nav-item">
                                     <a class="nav-link link-color" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
                                         Информация
                                     </a>
                                 </li>
+                                {% endif %}
                               </ul>
                         </div>
                           <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active mb-3" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                {% for post in me.walls %}
-                                <div class="background-4 text-color-4 card">
+                                <div class="background-4 text-color-4 card mb-2">
                                     <div class="card-header">
-                                        {{ post.title}}
+                                        Новая запись
                                     </div>
                                     <div class="card-body">
-                                        {{ post.}}
+                                        
                                     </div>
                                     <div class="card-footer">
-                                        <a href="/wall/{{ post.number }}" class="link-color">Подробнее</a>
+                                        <a href="/wall/{{ post.id }}" class="link-color">Отправить</a>
+                                    </div>
+                                </div>
+                                {% for post in user.walls %}
+                                <div class="background-4 text-color-4 card mb-2">
+                                    {% if post.title != "" %}
+                                    <div class="card-header">
+                                        {{ post.title }}
+                                    </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        {{ post.text }}
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="/wall/{{ post.id }}" class="link-color">Подробнее</a>
                                     </div>
                                 </div>
                                 {% endfor %}
                             </div>
+                            {% if settings.imageCarusel %}
                             <div class="tab-pane fade mb-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="background-4 text-color-4 card">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -437,6 +487,8 @@
                                     </div-->
                                 </div>
                             </div>
+                            {% endif %}
+                            {% if settings.information %}
                             <div class="tab-pane fade mb-3" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="background-4 text-color-4 card">
                                     <div class="card-header">
@@ -450,11 +502,12 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                           </div>
                     </div>
                     <div class="col-3 mr-3">
                         <div class="card background-4 text-color-4">
-                            <img class="card-img-top" src="{{ user.img }}" alt="">
+                            <img class="card-img-top" src="{{ user.img }}" alt="{{ user.nickname }}#{{ user.id }}">
                             <div class="card-body">
                                 <a class="nav-link w-100">
                                     <h6>
@@ -468,19 +521,17 @@
                 </div>
             </div>
             <div class="alerts-block float-right fixed right-0 bottom-0" style="z-index: 1070;">
-                {% if len( me.notifications )>0 %}
-                    {% for notification in me.notification %}
-                    <div class="alert alert-primary" role="alert">
-                        <h4> 
-                            {{ notification.title }} 
-                        </h4>
-                        {{ notification.description }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    {% endfor %}
-                {% endif %}
+                {% for notification in me.notifications %}
+                <div class="alert alert-primary" role="alert">
+                    <h4> 
+                        {{ notification.title }} 
+                    </h4>
+                    {{ notification.description }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
             </div>
         </main>
         <!-- Optional JavaScript -->

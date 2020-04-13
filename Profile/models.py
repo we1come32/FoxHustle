@@ -15,6 +15,7 @@ class Permission(models.Model):
 	ProfileAccess      = models.BooleanField(default=True)        # 1
 	MessageAccess      = models.BooleanField(default=False)       # 2
 	SysAccess          = models.BooleanField(default=False)       # 32768
+	DevLogsAccess      = models.BooleanField(default=False)       # 63536
 	def __add__(self, other):
 		if type(self) == type(other):
 			a = Permission()
@@ -68,11 +69,20 @@ class Notification(models.Model):
 			self.unread = False
 			return True
 		return False
-
+	def json(self):
+		return {
+			'id': self.id,
+			'action': self.action,
+			'author': self.author.json(),
+			'title': self.title,
+			'description': self.description,
+			'unread': self.unread,
+		}
 
 # Пользователь
 class Profile(models.Model):
 	id = models.AutoField(primary_key=True)
+	img = models.CharField(default="/image/default.png", max_length=100)
 	online = models.DateTimeField(default=datetime.now)
 	nickname = models.CharField(default="", max_length=20)
 	verifery = models.BooleanField(default=False)
@@ -85,7 +95,7 @@ class Profile(models.Model):
 	test = models.BooleanField(default=False)
 	name = models.CharField(max_length=50, default="")
 	surname = models.CharField(max_length=50, default="")
-	patronymic = models.CharField(max_length=50, default="")
+	patronymic = models.CharField(max_length=50, default="", null=True, blank=True)
 	perms = models.ForeignKey('Permission', on_delete=models.CASCADE)
 	def __str__(self):
 		return "Profile#{id}".format(id=self.id)
@@ -96,6 +106,18 @@ class Profile(models.Model):
 		tmp.title = title
 		tmp.author = self
 		tmp.save()
+	def json(self):
+		return {
+			'id': str(self.id),
+			'img': str(self.img),
+			'online': str(self.online),
+			'nickname': str(self.nickname),
+			'verifery': bool(self.verifery),
+			'userType': str(self.userType),
+			'tester': bool(self.test),
+			'surname': str(self.surname),
+			'name': str(self.name),
+		}
 
 
 
