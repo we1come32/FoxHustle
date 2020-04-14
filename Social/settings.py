@@ -143,10 +143,15 @@ DEFAULT_TO_EMAIL = 'admin@foxhustle.ru'
 
 
 PAGE_SETTINGS = {
-                    'page':{
+                    'profile':{
+                        'friends': True,
+                        'subscriber': True,
+                        'subscription': True,
+                        'organizations': False,
                         'imageCarusel': False,
                         'walls': True,
                         'information': False,
+                        'online': True,
                     },
                     'leftmenu': {
                         'search': False,

@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from send_email import views
-from Auth import views as Auth
-from Profile import views
+#from send_email import views
+from Auth import views as AuthViews
+from Profile import views as ProfileViews
+from Wall import views as WallViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('email_confirm/', Auth.confirm_email),
-    path('profile/<str:id>/', views.general),
+    url('email_confirm/', AuthViews.confirm_email),
+    path('profile/<str:id>/', ProfileViews.general),
+    path('friends', ProfileViews.friends),
+    path('news/', WallViews.news),
 ]
