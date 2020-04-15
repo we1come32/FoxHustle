@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 # Разрешения
 class Permission(models.Model):
-	AuthAccess         = models.BooleanField(default=False)       # 32
+	AuthAccess         = models.BooleanField(default=True)       # 32
 	AppsAccess         = models.BooleanField(default=False)       # 64
 	BugtrackerAccess   = models.BooleanField(default=False)       # 128
 	ExperienceAccess   = models.BooleanField(default=False)       # 8
@@ -32,7 +32,6 @@ class Permission(models.Model):
 			a.MessageAccess = min(self.MessageAccess, other.MessageAccess)
 			a.SysAccess = min(self.SysAccess, other.SysAccess)
 			a.WallAccess = min(self.WallAccess, other.WallAccess)
-			
 			return a
 		return 0
 
@@ -85,10 +84,28 @@ class Notification(models.Model):
 			'unread': self.unread,
 		}
 
+# Превращение времени в удобную строку
+def editTime(delta, start):
+	if delta < timedelta(minutes=5):
+		tmpOnline = "Онлайн"
+	elif delta < timedelta(hours=5):
+		tmpOnline = "Был(а) в сети {minutes} минут назад".format(minutes=delta.seconds//60) 
+	elif delta < timedelta(days=1):
+		tmpOnline = "Был(а) в сети {hours} часов назад".format(hours=delta.seconds//3600)
+	else:
+		day = start.strftime("%d")
+		month = ["Января","Февраля","Марта","Апреля","Мая","Июня","Июля","Августа","Сентября","Октября","Ноября","Декабря"][int(start.strftime("%m"))-1]
+		year = start.strftime("%Y")
+		if delta < timedelta(days=335):
+			tmpOnline = "Был(а) в сети {day} {month}".format(day=day, month=month)
+		else:
+			tmpOnline = "Был(а) в сети {day} {month} {year}".format(day=day, month=month, year=year)
+	return tmpOnline
+
 # Пользователь
 class Profile(models.Model):
 	id = models.AutoField(primary_key=True)
-	img = models.CharField(default="/image/default.png", max_length=100)
+	img = models.CharField(default="/Images/default.png", max_length=100)
 	online = models.DateTimeField(default=datetime.now)
 	nickname = models.CharField(default="", max_length=20)
 	verifery = models.BooleanField(default=False)
@@ -113,26 +130,15 @@ class Profile(models.Model):
 		tmp.author = self
 		tmp.save()
 	def json(self):
-		delta = timezone.now()-self.online
-		if True:
-			if delta < timedelta(minutes=5):
-				online = "Онлайн"
-			elif delta < timedelta(hours=5):
-				online = "Был(а) в сети {minutes} минут назад".format(minutes=delta.seconds//60) 
-			elif delta < timedelta(days=1):
-				online = "Был(а) в сети {hours} часов назад".format(hours=delta.seconds//3600)
-			else:
-				day = self.online.strftime("%d")
-				month = ["Января","Февраля","Марта","Апреля","Мая","Июня","Июля","Августа","Сентября","Октября","Ноября","Декабря"][int(self.online.strftime("%m"))-1]
-				year = self.online.strftime("%Y")
-				if delta < timedelta(days=335):
-					online = "Был(а) в сети {day} {month}".format(day=day, month=month)
-				else:
-					online = "Был(а) в сети {day} {month} {year}".format(day=day, month=month, year=year)
+		try:
+			delta = timezone.now() - self.online
+		except:
+			delta = datetime.now() - self.online
+		tmpOnline = editTime(delta, self.online)
 		return {
 			'id': str(self.id),
 			'img': str(self.img),
-			'online': online,
+			'online': tmpOnline,
 			'nickname': str(self.nickname),
 			'verifery': bool(self.verifery),
 			'userType': str(self.userType),
@@ -146,14 +152,14 @@ class Profile(models.Model):
 	def getNotifications(self):
 		result = []
 		a = Notification.objects.filter(author=self, unread=True)
-		print("NOTIFICATION", a)
+		#print("NOTIFICATION", a)
 		for tmp in a:
 			result += [tmp.json()]
 			tmp.read()
 		return result
-	def online(self):
+	def setOnline(self):
 		try:
-			self.online = datetime.now()
+			self.online = timezone.now()
 			self.save()
 			return True
 		except:

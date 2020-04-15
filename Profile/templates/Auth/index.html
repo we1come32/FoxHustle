@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+    {% include 'head.html' %}
+        <title>Fox Hustle</title>
+    </head>
+    <body class="h-100 dark">
+        <div class="pos-f-t fixed-top sticky w-100">
+            <nav class="navbar background-1">
+                <ol class="breadcrumb mb-0 background-3 text-color-3" style="border: 1px solid #fff;">
+                    <li class="breadcrumb-item"> 
+                        <a href="/" class="breadcrumb-item link-color">
+                            <span>
+                                <img src="/favicon.ico" width="24"class="d-inline-block align-top" alt="Logotype">
+                            </span>
+                            <span>
+                                Fox Hustle
+                            </span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item"> 
+                        <a href="/" class="breadcrumb-item link-color">
+                            <span>
+                                {% if me.page == 1 %}
+                                Предрегистрация
+                                {% else %}
+                                Авторизация
+                                {% endif %}
+                            </span>
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <main class="flex-grow-1 flex-shrink-1 d-flex background-3" style="min-height: 100%!important; padding-top: 4.2rem!important">
+            <!-- Content block -->
+            <div class="container-fluid px-0 col-lg-10 center overflow-y float-center">
+                <div class="row mx-0 pt-4 h-100">
+                    <div class="col-4 d-none d-sm-block">
+                        <img src="/Images/Эмотикон.png" alt="Эмотикон" class="w-100">
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        <div class="card background-4 text-color-4">
+                            <div class="card-body h4">
+                                <h3 class="card-title">
+                                    <span>
+                                        <img src="/favicon.ico" width="24" class="d-inline-block align-center mb-1">
+                                    </span>
+                                    <span>
+                                        Fox Hustle
+                                    </span>
+                                </h3>
+                                <span>
+                                    Социальная сеть с большими возможностями!
+                                </span>
+                            </div>
+                            {% if me.page == 1 %}
+                            <h5 class="card-footer">
+                                <form action="/register/" method="post">
+                                    <div class="form-group">
+                                      <label for="exampleInputEmail1">Электронная почта</label>
+                                      <input type="email" name="login" class="form-control" aria-describedby="emailHelp" placeholder="Введите email">
+                                      <small id="emailHelp" class="form-text text-muted h6">Мы не будем делиться вашей электронной почтой ни с кем другим.</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleInputPassword1">Пароль</label>
+                                      <input type="password" name="password" class="form-control" placeholder="Пароль">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleInputPassword1">Никнейм</label>
+                                      <input type="nickname" name="nickname" class="form-control" placeholder="Никнейм">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleInputPassword1">Имя</label>
+                                      <input type="name" name="name" class="form-control" placeholder="Имя">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleInputPassword1">Фамилия</label>
+                                      <input type="surname" name="surname" class="form-control" placeholder="Фамилия">
+                                    </div>
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">
+                                        Зарегистрироваться
+                                    </button>
+                                </form>
+                                <small>Или вы можете <a href="/login">войти со своей учетной записью</a></small>
+                            </h5>
+                            {% else %}
+                            <h5 class="card-footer">
+                                <form action="/login/" method="post">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Электронная почта</label>
+                                        <input type="email" name="login" class="form-control" aria-describedby="emailHelp" placeholder="Введите email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Пароль</label>
+                                        <input type="password" name="password" class="form-control" placeholder="Пароль">
+                                    </div>
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">
+                                        Войти
+                                    </button>
+                                </form>
+                                <small>Или вы можете <a href="/register">Зарегистрироваться</a></small>
+                            </h5>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

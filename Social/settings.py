@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'osjt*k!aml2pea1aa)@r6z&=#gyc0fn-yn3_37!!)69@z%&j#o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','foxhustle.ru']
 
 
 # Application definition
@@ -159,7 +159,7 @@ PAGE_SETTINGS = {
                             'all': True,
                             'mypage':True,
                             'news': True,
-                            'messages': True,
+                            'messages': False,
                             'friends': True,
                             'groups': False,
                         },

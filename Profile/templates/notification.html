@@ -1,0 +1,20 @@
+
+            <div class="alerts-block float-right fixed right-0 bottom-0" style="z-index: 1070;">
+                {% for notification in me.notifications %}
+                    <div class="alert alert-primary" role="alert" style="margin-left: 20px; margin-right: 20px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5> 
+                            {{ notification.title }} 
+                        </h5>
+                        {{ notification.description }}
+                        <br>
+                        {% if notification.action != none %}
+                            <a href="{{ notification.action }}">
+                                Подробнее
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>

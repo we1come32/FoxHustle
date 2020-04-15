@@ -25,6 +25,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('email_confirm/', AuthViews.confirm_email),
     path('profile/<str:id>/', ProfileViews.general),
-    path('friends', ProfileViews.friends),
+    path('friends/', ProfileViews.friends),
     path('news/', WallViews.news),
+    path('register/', AuthViews.registration),
+    path('login/', AuthViews.login),
+    path('logout/', AuthViews.logout),
+    path('/', AuthViews.registration),
+    path('', AuthViews.registration),
 ]

@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from . import models
 from Profile.models import Permission
 from Profile.models import Profile as Profiles
 from Profile.models import Notification
+from django.http import HttpResponseRedirect
+from random import randint
 
 # Create your views here.
 
@@ -26,25 +28,29 @@ def genKey(length):
     return result
 
 def encoding(data, user):
+    app = data['app_id']
+    data['app_id'] = app.id
     if data['type'] == "user":
         text = data['type'][0] + "0" * max (0, 11 - len (str (data['id']))) + str (data['id']) + "0"*max(0, 11-len(str (data['app_id'])))+str (data['app_id']) + genKey(45)
     elif data['type'] == "bot":
         text =  data['type'][0] + "0" * max (0, 11 - len (str (data['id']))) + str (data['id']) + genKey(56)
     else:
         raise Exception('Not fix this data encription: ' + str(data))
+    print(text)
     length, result = 35, ""
     chifr, chift_dict = randomChars("0123456789qwertyuiopasdfghklzxcvbnm", on_dict = True)
     e, n = 31, 35
     result = "".join(chifr[(chift_dict[_]+(number+1)**2)**e%n] for number, _ in enumerate(text))
     token = ("".join((chifr[number] + result[number]) for number in range(length)) + result[length:])
     perms = Permission.objects.create()
-    app = models.AuthApp.get(id=data['app_id'])
+    tmpPerms = perms + app.perms
+    tmpPerms.save()
     a = models.AccessToken.objects.create(
         app=app,
         worked=True,
         profile=user,
         access_token=token,
-        perms=perms + app.perms,
+        perms=tmpPerms,
     )
     a.save()
     return token
@@ -81,6 +87,7 @@ def getUser(request):
             'MessageAccess': 0,
             'SysAccess': 0,
             'DevLogsAccess': 0,
+            'WallAccess': 0,
         }
         user = 0
         worked = False
@@ -95,15 +102,16 @@ def getUser(request):
                 'perms': { key: value for key, value in self.params.items() },
                 'profile': self.user.json(),
                 'slug': self.user.id,
-                'notifications': [notification.json() for notification in Notification.objects.filter(author=self.user, unread=False)],
+                'notifications': self.user.getNotifications(),
             }
-    access_token = request.session.get('access_token', False)
+    access_token = request.COOKIES.get('access_token', False)
     tmpData = AuthProfileData()
     if access_token:
         try:
             user = decoding(access_token)
             app = models.AuthApp.objects.get(id=user['app_id'])
             user = Profiles.objects.get(id=user['id'])
+            user.setOnline()
             perms = user.perms + app.perms
             tmpData.user = user
             tmpData.params['AuthAccess'] = perms.AuthAccess
@@ -117,6 +125,7 @@ def getUser(request):
             tmpData.params['MessageAccess'] = perms.MessageAccess
             tmpData.params['SysAccess'] = perms.SysAccess
             tmpData.params['DevLogsAccess'] = perms.DevLogsAccess
+            tmpData.params['WallAccess'] = perms.WallAccess
             tmpData.worked = True
         except Exception as e:
             tmpData.worked = False
@@ -126,36 +135,74 @@ def getUser(request):
 
 
 def login(request, app=1):
-    data = {}
+    access_token = request.COOKIES.get('access_token', False)
+    if access_token:
+        try:
+            access_token = models.AccessToken.objects.get(access_token=access_token)
+            return HttpResponseRedirect('/profile/'+str(access_token.profile.id))
+        except:
+            pass
+    getdata = {}
     flag = True
     names = [
         'login', 
         'password'
         ]
+    notification = [] 
     for name in names:
         try:
-            data[name] = request.session.get(name)
+            tmp = request.POST.get(name)
+            if tmp:
+                getdata[name] = tmp
+            else:
+                getdata[name] = ""
+                flag = False
         except:
+            getdata[name] = ""
             flag = False
+    print(getdata)
     if flag:
         try:
             from Crypto.Hash import SHA256
             hash = SHA256.new()
-            hash.update(data['password'].encode())
+            hash.update(getdata['password'].encode())
             user = models.AuthInfoProfile.objects.get(
-                email=data['login'],
-                password=hash.digest(),
+                email = getdata['login'].lower(),
+                password = str(hash.digest()),
             )
+            app = models.AuthApp.objects.get(id=1)
             data = {
                 'type': 'user',
                 'id': user.profile.id,
                 'app_id': app,
             }
             token = encoding(data, user=user.profile)
-            request.set_cookie(access_token=token)
+            tmp = HttpResponseRedirect('/profile/'+str(user.profile.id))
+            tmp.set_cookie('access_token', token)
+            return tmp
         except:
             pass
-    return redirect('/login')
+    notification = [
+        {
+            'id': 1,
+            'action': "",
+            'author': "",
+            'title': "Авторизация",
+            'description': "Авторизоваться, к сожалению, не получилось. Попробуйте снова",
+            'unread': True,
+        }
+    ]
+    return render(
+        request,
+        "Auth/index.html",
+        {
+            'me':{
+                'page': 0,
+                'data': getdata,
+                'notifications': notification,
+            }
+        }
+    )
 
 
 def confirm_email(request):
@@ -172,10 +219,94 @@ def confirm_email(request):
             description="Вы подтвердили свою почту. Теперь Вы можете пользоваться всеми доступными функциями сайта."
             )
     except:
-        return redirect('/')
-
+        return HttpResponseRedirect('/')
 
 
 def registration(request):
-    pass
+    access_token = request.COOKIES.get('access_token', False)
+    if access_token:
+        try:
+            access_token = models.AccessToken.objects.get(access_token=access_token)
+            return HttpResponseRedirect('/profile/'+str(access_token.profile.id))
+        except:
+            pass
+    getdata = {}
+    flag = True
+    names = [
+        'login', 
+        'password',
+        'name',
+        'surname',
+        'nickname',
+        ]
+    notification = [] 
+    for name in names:
+        try:
+            tmp = request.POST.get(name)
+            if tmp:
+                getdata[name] = tmp
+            else:
+                getdata[name] = ""
+                flag = False
+        except:
+            getdata[name] = ""
+            flag = False
+    if flag:
+        try:
+            if (len(getdata['password'])>8 and len(getdata['nickname'])>2 and len(getdata['name'])>0 and len(getdata['surname'])>0 and len(getdata['login'])>0):
+                from Crypto.Hash import SHA256
+                hash = SHA256.new()
+                hash.update(getdata['password'].encode())
+                perms = Permission.objects.create()
+                pr = Profiles.objects.create(
+                    nickname=getdata['nickname'],
+                    name=getdata['name'],
+                    surname=getdata['surname'],
+                    perms=perms,
+                )
+                user = models.AuthInfoProfile.objects.create(
+                    email=getdata['login'].lower(),
+                    password=str(hash.digest()),
+                    profile=pr,
+                )
+                app = models.AuthApp.objects.get(id=1)
+                data = {
+                    'type': 'user',
+                    'id': pr.id,
+                    'app_id': app,
+                }
+                token = encoding(data, user=user.profile)
+                tmp = HttpResponseRedirect('/profile/'+str(user.profile.id))
+                tmp.set_cookie('access_token', token)
+                return tmp
+        except:
+            pass
+    else:
+        notification = [
+            {
+                'id': 1,
+                'action': "",
+                'author': "",
+                'title': "Регистрация",
+                'description': "Зарегистрироваться, к сожалению, не получилось. Попробуйте снова",
+                'unread': True,
+            }
+        ]
+    return render(
+        request,
+        "Auth/index.html",
+        {
+            'me':{
+                'page': 1,
+                'data': getdata,
+                'notifications': notification,
+            }
+        }
+    )
 
+
+def logout(request):
+    a = HttpResponseRedirect("/")
+    if request.COOKIES.get('access_token', False):
+        a.delete_cookie('access_token')
+    return a

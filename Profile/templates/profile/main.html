@@ -1,110 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <style>
-
-            /* ---- System config ---- */
-            html, body {height: 100%;}
-            .fas{width: 20px;}
-            .fixed{position: fixed;}
-            .right-0{right: 0;}
-            .left-0{left:0;}
-            .bottom-0{bottom:0;}
-            .overflow-y{overflow-y:auto!important;overflow-x:hidden;}
-            .overflow-x{overflow-y:auto!important;overflow-y:hidden;}
-            .top-0{top:0;}
-            .h-10{height: 10%!important;}
-            .h-20{height: 20%!important;}
-            .h-30{height: 30%!important;}
-            .h-40{height: 40%!important;}
-            .h-60{height: 60%!important;}
-            .h-70{height: 70%!important;}
-            .h-80{height: 80%!important;}
-            .h-90{height: 90%!important;}
-            .breadcrumb-item+.breadcrumb-item::before {
-                display: inline-block;
-                padding-right: .5rem;
-                content: "/";
-            }
-            textarea#message-textarea {
-                box-sizing: border-box;
-                width: 100%;    
-                background-color: #242b33;
-                border: none;
-                outline: none;
-                color: white;
-                height: 40px;
-            }
-            textarea#message-textarea:focus{
-                height: 100px;
-            }
-
-
-
-            /* ---- Dark Theme ---- */
-            /* Background-color */
-            .dark .background-1{background-color:#2b333c!important;}
-            .dark .background-2{background-color:#21262B!important;}
-            .dark .background-3{background-color:#1D2126!important;}
-            .dark .background-4{background-color:#242B33!important;}
-            .dark .selected{background-color: #2E3C4D!important;}
-
-            /* Text-color */
-            .dark .text-color-1{color:#A3B8CC!important;}
-            .dark .text-color-2{color:#A3B8CC!important;}
-            .dark .text-color-3{color: #A3B8CC!important;}
-            .dark .text-color-4{color:#A3B8CC!important;}
-            
-            /* History-color */
-            .dark .breadcrumb-item+.breadcrumb-item::before{color: #243E59;} 
-
-            /* Link color */
-            .dark .link-color:not(.active){color: #A3B8CC!important;}
-
-            /* Active elements */
-            .dark .nav-item .active{
-                background: #A3B8CC !important;
-            }
-
-
-
-
-
-            /* ---- Light Theme ---- */
-            /* Background-color */
-            .light .background-1{background-color:#ffffff!important;}
-            .light .background-2{background-color:#F2F7FC!important;}
-            .light .background-3{background-color:#F2F7FC!important;}
-            .light .background-4{background-color:#ffffff!important;}
-            .light .selected{background-color: #FF8F5E!important;}
-
-            /* Text-color */
-            .light .text-color-1{color:#000000!important;}
-            .light .text-color-2{color:#000000!important;}
-            .light .text-color-3{color:#000000!important;}
-            .light .text-color-4{color:rgb(35, 35, 45)!important;}
-
-            /* History-color */
-            .light .breadcrumb-item+.breadcrumb-item::before{color: rgba(0, 0, 0, 0.3);} 
-
-            /* Link color */
-            .light .link-color:not(.active){color:#343a40!important;}
-
-            /* Active elements */
-            .light .nav-item .active{
-                background: #CAD6E0 !important;
-            }
-
-
-
-
-        </style>
+    {% include 'head.html' %}
         <title>Fox Hustle</title>
     </head>
     <body class="h-100 dark">
@@ -121,7 +18,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/" class="breadcrumb-item link-color">
                                     <span>
-                                        <img src="./favicon.ico" width="24"class="d-inline-block align-top" >
+                                        <img src="/favicon.ico" width="24"class="d-inline-block align-top" >
                                     </span>
                                     <span>
                                         Fox Hustle
@@ -135,240 +32,7 @@
             </nav>
         </div>
         <main class="flex-grow-1 flex-shrink-1 d-flex background-3" style="min-height: 100%!important; padding-top: 4.2rem!important">
-            <!-- Left-Menu -->
-            <div class="collapse fixed-top navbar-collapse col-lg-2 background-2 d-lg-block w-100 h-100 align-left" id="navbarNavDropdown" style="z-index: 1020;">
-                <ul class="navbar-nav h-100" id="left-menu" style="padding-top: 4.2rem!important">
-                    <div class="overflow-y pr-3 h-100" style="margin-right: -15px;">
-                    {% if settings.leftmenu.search %}
-                        <li class="nav-item active">
-                            <form class="form-inline row mt-2 mx-lg-0">
-                                <input class="form-control mx-3 col mx-lg-0 background-3 text-color-3" type="search" placeholder="Найти..." aria-label="Search">
-                                <button class="btn btn-outline-success my-2 mr-3 col-auto d-lg-none" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
-                        </li>
-                    {% endif %}
-                    {% if settings.leftmenu.menu.all %}
-                        <li class="nav-item">
-                            <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#menu" aria-expanded="true" aria-controls="menu">
-                                <i class="fas fa-angle-right"></i>
-                                Меню
-                            </button>
-                        </li>
-                        <li id="menu" class="collapse show ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
-                            <ul class="navbar-nav">
-                            {% if settings.leftmenu.menu.mypage %}
-                                <li class="nav-item link-color">
-                                    <a class="nav-link link-color" href="/profile/{{ me.profile.slug }}">
-                                        <i class="fas fa-user"></i>
-                                        Моя страница
-                                    </a>
-                                </li>
-                            {% endif %}
-                            {% if settings.leftmenu.menu.news %}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="/news">
-                                        <i class="fas fa-newspaper"></i>
-                                        Новости
-                                    </a>
-                                </li>
-                            {% endif %}
-                            {% if settings.leftmenu.menu.messages %}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="/messages">
-                                        <i class="fas fa-comment"></i>
-                                        Cообщения
-                                    </a>
-                                </li>
-                            {% endif %}
-                            {% if settings.leftmenu.menu.friends %}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="/friends">
-                                        <i class="fas fa-user-friends"></i>
-                                        Друзья
-                                    </a>
-                                </li>
-                            {% endif %}
-                            {% if settings.leftmenu.menu.groups %}
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-users"></i>
-                                        Сообщества
-                                    </a>
-                                </li>
-                            {% endif %}
-                            </ul>
-                        </li>
-                    {% endif %}
-                    {% if settings.leftmenu.links %}
-                        <li class="nav-item">
-                            <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#links" aria-expanded="true" aria-controls="links">
-                                <i class="fas fa-angle-right"></i>
-                                Ссылки
-                            </button>
-                        </li>
-                        <li id="links" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
-                            <ul class="navbar-nav">
-                                <li class="nav-item text-color-2">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-link"></i>
-                                        Ссылка №1
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-link"></i>
-                                        Ссылка №2
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-color" href="#">
-                                        <i class="fas fa-link"></i>
-                                        Ссылка №3
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    {% endif %}
-                    {% if settings.leftmenu.system.all %}
-                        <li class="nav-item">
-                            <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#system" aria-expanded="true" aria-controls="system">
-                                <i class="fas fa-angle-right"></i>
-                                Служебное
-                            </button>
-                        </li>
-                        <li id="system" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
-                            <ul class="navbar-nav">
-                                {% if settings.leftmenu.system.settings and me.perms.SysAccess %}
-                                    <li class="nav-item link-color">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-tools"></i>
-                                            Настройки системы
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.system.ads %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-ad"></i>
-                                            Рекламный кабинет
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.system.bugtracker and me.perms.BugtrackerAccess %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-bug"></i>
-                                            Баг-трекер
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.system.logging and me.perms.DevLogsAccess %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            Логи ошибок
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.system.onlinestatistic and me.perms.DevLogsAccess or settings.onlinestatistic and me.perms.SysAccess %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-globe"></i>
-                                            Онлайн статистика
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                    {% endif %}
-                    {% if settings.leftmenu.etc.all %}
-                        <li class="nav-item">
-                            <button class="btn btn-link w-100 px-0 text-left link-color" data-toggle="collapse" data-target="#etc" aria-expanded="true" aria-controls="etc">
-                                <i class="fas fa-angle-right"></i>
-                                Дополнительно
-                            </button>
-                        </li>
-                        <li id="etc" class="nav-item collapse ml-2" aria-labelledby="headingOne" data-parent="#left-menu">
-                            <ul class="navbar-nav">
-                                {% if settings.leftmenu.etc.about %}
-                                    <li class="nav-item link-color">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-info"></i>
-                                            О Fox Hustle
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.etc.dev %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-code"></i>
-                                            Разработчикам
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.etc.blog %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-bug"></i>
-                                            Блог
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.etc.jobs %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-briefcase"></i>
-                                            Вакансии
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.etc.laws %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-gavel"></i>
-                                            Правовая информация
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.etc.security %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-shield-alt"></i>
-                                            Центр безопасности
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {% if settings.leftmenu.etc.securityData %}
-                                    <li class="nav-item">
-                                        <a class="nav-link link-color" href="#">
-                                            <i class="fas fa-database"></i>
-                                            Защита данных
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                    {% endif %}
-                        <li class="clearfix"></li>
-                    </div>
-                    <div class="bt-1 align-bottom mb-2">
-                        <hr class="w-100" style="border-top: 3px solid rgba(0,0,0,.1);">
-                        <div class="nav-link link-color">
-                            <a class="link-color" href="#">
-                                <img src="{{ me.profile.img }}" width="30" height="30" class="d-inline-block align-top" alt="Image" style="border-radius: 15px;">
-                                {{ me.profile.nickname }}#{{ me.profile.id }}
-                            </a>
-                            {% if settings.settings %}
-                            <a class="link-color float-right h-100" href="/settings">
-                                <i class="fas fa-cog"></i>
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </ul>
-            </div>
+            {% include 'leftmenu.html' %}
             <!-- Content block -->
             <div class="container-fluid px-0 col-lg-10 right overflow-y float-right mr-0">
                 <div class="row mx-0 pt-4 h-100">
@@ -381,7 +45,7 @@
                                     <i class="fas fa-check text-color-1"></i>
                                     {% endif %}
                                 </h3>
-                                {% if settings.page.online %}
+                                {% if settings.profile.online %}
                                 {{ user.online }}
                                 {% endif %}
                                 <hr>
@@ -440,32 +104,10 @@
                             {% if settings.profile.walls %}
                             <div class="tab-pane fade show active mb-3" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 {% if  user.id == me.profile.id %}
-                                <form action="/profile/{{ user.id }}?act=new" method="Post" class="background-4 text-color-4 card mb-2">
-                                    <div class="card-header">
-                                        Новая запись
-                                    </div>
-                                    <div class="card-body">
-                                        <textarea name="message-textarea" id="message-textarea" cols="100%" placeholder="Введите сообщение..."></textarea>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button type="button" class="btn btn-secondary">Отправить</a>
-                                    </div>
-                                </form>
+                                {% include 'new_post.html' %}
                                 {% endif %}
                                 {% for post in user.walls %}
-                                <div class="background-4 text-color-4 card mb-2">
-                                    {% if post.title != "" %}
-                                    <div class="card-header">
-                                        {{ post.title }}
-                                    </div>
-                                    {% endif %}
-                                    <div class="card-body">
-                                        {{ post.text }}
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="/wall/{{ post.id }}" class="link-color">Подробнее</a>
-                                    </div>
-                                </div>
+                                    {% include 'post.html' %}
                                 {% empty %}
                                 <div class="background-4 text-color-4 card mb-2">
                                     <div class="card-body text-center">
@@ -551,25 +193,7 @@
                     </div>
                 </div>
             </div>
-            <div class="alerts-block float-right fixed right-0 bottom-0" style="z-index: 1070;">
-                {% for notification in me.notifications %}
-                    <div class="alert alert-primary" role="alert" style="margin-left: 20px; margin-right: 20px;">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h5> 
-                            {{ notification.title }} 
-                        </h5>
-                        {{ notification.description }}
-                        <br>
-                        {% if notification.action != none %}
-                            <a href="{{ notification.action }}">
-                                Подробнее
-                            </a>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+            {% include 'notification.html' %}
         </main>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

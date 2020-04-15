@@ -1,0 +1,15 @@
+                                <div class="background-4 text-color-4 card mb-2">
+                                    {% if post.title != "" %}
+                                    <div class="card-header">
+                                        {{ post.title }}
+                                    </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        {{ post.text }}
+                                    </div>
+                                    {% if False %}
+                                    <div class="card-footer">
+                                        <a href="/wall/{{ post.id }}" class="link-color">Подробнее</a>
+                                    </div>
+                                    {% endif %}
+                                </div>

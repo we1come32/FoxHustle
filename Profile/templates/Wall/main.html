@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+    {% include 'head.html' %}
+        <title>Fox Hustle</title>
+    </head>
+    <body class="h-100 dark">
+        <div class="pos-f-t fixed-top sticky w-100">
+            <nav class="navbar background-1">
+                <div class="row">
+                    <div class="col-auto d-lg-none">
+                        <button class="navbar-toggler d-inline d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon fas fa-bars text-color-1 h-100 my-2"></span>
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <ol class="breadcrumb mb-0 background-3 text-color-3" style="border: 1px solid #fff;">
+                            <li class="breadcrumb-item">
+                                <a href="/" class="breadcrumb-item link-color">
+                                    <span>
+                                        <img src="/favicon.ico" width="24"class="d-inline-block align-top" alt="Logotype">
+                                    </span>
+                                    <span>
+                                        Fox Hustle
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">Новости</li>
+                        </ol>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <main class="flex-grow-1 flex-shrink-1 d-flex background-3" style="min-height: 100%!important; padding-top: 4.2rem!important">
+            {% include 'leftmenu.html' %}
+            <!-- Content block -->
+            <div class="container-fluid px-0 col-lg-10 right float-right mr-0">
+                <div class="row mx-0 pt-4">
+                    <div class="h-100 order-2 order-md-1 col-12 col-md-9 align-right overflow-y" id="block-news">
+                        {% include 'new_post.html' %}
+                        {% for post in walls %}
+                            {% include 'post.html' %}
+                        {% empty %}
+                        <div class="background-4 text-color-4 card mb-2">
+                            <div class="card-body">
+                                У вас нет ни одной новости<br>Подпишитесь на ваших друзей здесь
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="order-1 order-md-2 col-md-3 col-12 mb-3" style="margin-right: -15px;">
+                        <div class="overflow-x sticky-top" style="top: 80px; z-index: 1000;">
+                            <ul class="list-group w-md-100" id="scroll-x" style="">
+                                <li class="list-group-item background-4 text-color-4 d-inline-block d-md-block">
+                                    Новости
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'notification.html' %}
+        </main>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+            setInterval(function() {
+                var width = 0;
+                var a = document.getElementsByClassName('list-group-item');
+                for (var i = 0; i < a.length; i++)
+                    width += a[i].offsetWidth;
+                document.getElementById('scroll-x').style.width = width+4*a.length+"px";
+            }, 1000)
+        </script>
+    </body>
+</html>
